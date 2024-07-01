@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 생성</title>
+</head>
+<body>
+    <h1>새 팀 생성 페이지</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }} 
+            <!-- .as_p 는 p 태그가 감싸진 것처럼 해줌 / .as_ul은 ul 태그가 감싸진 것처럼 보임 -->
+        </table>
+        <input type="submit" value="새 팀 생성하기">
+    </form>
+</body>
+</html>

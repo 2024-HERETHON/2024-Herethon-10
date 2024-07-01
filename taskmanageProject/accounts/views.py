@@ -3,8 +3,12 @@ from django.shortcuts import render, redirect
 from .models import User
 from .forms import CustomUserForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
+
+# 첫 화면
+def base(request):
+    return render(request, 'account_base.html')
 
 # 회원가입
 def signup(request):
@@ -50,7 +54,7 @@ def signup(request):
                 
                 # 회원가입 성공
                 form.save()
-                return redirect('accounts:signup_success') 
+                return redirect('accounts:base') 
             else:
                 return redirect('accounts:signup_fail') # 비번 불일치
         else:
@@ -62,7 +66,7 @@ def signup(request):
 
 # 회원가입 성공
 def signup_success(request):
-    return render(request, 'signup_success.html')
+    return render(request, 'account_base.html')
 
 # 회원가입 실패
 def signup_fail(request):
@@ -77,7 +81,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             print('로그인 성공')
-            return redirect('accounts:signup_success')
+            return redirect('accounts:base')
         else: 
             # 에러 메시지 설정
             error_message = "아이디 또는 비밀번호가 잘못되었습니다." 
@@ -87,4 +91,6 @@ def login(request):
     
 # 로그아웃
 def logout(request):
-    return redirect('accounts:signup') 
+    auth_logout(request)
+    print('로그아웃 성공')
+    return redirect('accounts:base') 

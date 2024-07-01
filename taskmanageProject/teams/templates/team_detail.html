@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 상세보기</title>
+</head>
+<body>
+    <!-- 사진이 있을 경우 -->
+    {% if team.photo %}
+        <img src="{{ team.photo.url }}" alt="" height="300">
+    {% endif %}
+    <!-- 팀 내용 출력 -->
+    <h1> 팀이름: {{team.name}} </h1>
+    <h3>팀 생성자 : {{team.creater}}</h3>
+    <p> 팀 설명: {{team.description}} </p>
+    <strong>멤버:</strong>
+    <ul>
+        {% for member in team.members.all %}
+            <li>{{ member.username }}</li>
+        {% endfor %}
+    </ul>
+    <!-- 글 수정 / 삭제 -->
+    {% if request.user == team.creater %}
+    <a href="{% url 'teams:team_update' team.id %}">팀 수정하기</a>
+    <a href="{% url 'teams:team_delete' team.id %}">팀 삭제하기</a>
+    {% endif %}
+    <!--글 수정/삭제 여기까지-->
+</body>
+</html>

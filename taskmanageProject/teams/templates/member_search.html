@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀원 검색</title>
+</head>
+<body>
+    <h2>{{ team.name }}에 맴버 추가</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">사용자 이름:</label>
+        <input type="text" id="username" name="username">
+        <button type="submit">검색</button>
+    </form>
+    {% if members %}
+    <h3>검색 결과:</h3>
+    <ul>
+        {% for member in members %}
+            <li>{{ member.username }} - <a href="{% url 'team:add_member_confirm' team.id member.id %}">추가</a></li>
+        {% empty %}
+            <li>매칭되는 맴버 없음</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

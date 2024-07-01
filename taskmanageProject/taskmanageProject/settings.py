@@ -40,7 +40,14 @@ AUTH_USER_MODEL = 'accounts.User'
 import os
 
 STATIC_ROOT = os.path.join('staticfiles')
-                           
+
+# 이미지 관련
+import os
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,7 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'accounts',
+    'accounts', 'teams',
 ]
 
 MIDDLEWARE = [
