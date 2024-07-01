@@ -1,13 +1,10 @@
 from django.urls import path, include
-from rest_framework.routers import SimpleRouter
 from . import views
 
-user_router = SimpleRouter()
-user_router.register('user', views.UserViewSet) # user/ 경로에서 UserViewSet을 라우팅 
+app_name = "accounts"
 
 urlpatterns = [
-    path('',include(user_router.urls)),
-    # path('user/<int:pk>/', views.UserDetailView.as_view(), name='user-detail'),
-    path('auth/', include('rest_framework.urls')),
-    path('rest-auth/', include('dj_rest_auth.urls')),
+    path('signup/', views.signup, name='signup'),
+    path('signup/success/', views.signup_success, name='signup_success'),
+    path('login/', views.login, name='login'),
 ]

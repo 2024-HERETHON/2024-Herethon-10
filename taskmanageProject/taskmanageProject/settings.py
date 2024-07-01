@@ -20,16 +20,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-978d#ey1ho3f1=7-k88q7$i6(zjptbc6#wj2$%v0j%%(wdgdf1'
+SECRET_KEY = 'django-insecure-_5-^5)+r$^04)!e$z7r12pxsace!^jh=wvusf(vr6!k!t+$i&*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# static 관련 설정
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
+# custom user 설정(accounts)
 AUTH_USER_MODEL = 'accounts.User'
 
+# 배포 관련
+import os
+
+STATIC_ROOT = os.path.join('staticfiles')
+                           
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,15 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'dj_rest_auth.registration',
-
-    'accounts', 'teams',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -59,17 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'allauth.account.middleware.AccountMiddleware',
 ]
-
-REST_FRAMEWORK = { 
-	'DEFAULT_AUTHENTICATION_CLASSES': [
-    'rest_framework.authentication.TokenAuthentication', 
-    ],
-}
-
-SITE_ID = 1
 
 ROOT_URLCONF = 'taskmanageProject.urls'
 
