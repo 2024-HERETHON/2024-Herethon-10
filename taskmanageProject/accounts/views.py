@@ -5,6 +5,7 @@ from .forms import CustomUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 
+
 # 회원가입
 def signup(request):
     if request.method == 'POST':
@@ -17,48 +18,43 @@ def signup(request):
                 phone = form.cleaned_data['phone']
                 email = form.cleaned_data['email']
 
-            # 1. 아이디 유효성 검사
+            # 1. 아이디 길이 검사
                 if len(username) < 6 or len(username) > 25:
                     # 장고 관리 페이지에 뜬다.
                     messages.error(request, "아이디는 6~25자여야 합니다.")
-                    return redirect('signup')
+                    return redirect('accounts:signup_fail')
                 
-                if User.objects.filter(username=username).exists():
-                    messages.error(request, "이미 사용중인 아이디입니다.")
-                    return redirect('signup')
-                
-            # 2. 비밀번호 유효성 검사
+            # 2. 비밀번호 길이 검사
                 if len(password) < 8:
                     messages.error(request, "비밀번호는 최소 8자 이상이어야 합니다.")
-                    return redirect('signup')
+                    return redirect('accounts:signup_fail')
                 
-            # 3. 이름 유효성 검사
-                if len(name) < 2 or len(name) > 10:
+            # 3. 이름 길이 검사
+                if len(name) < 2 or len(name) > 15:
                     messages.error(request, "이름은 2~10자이어야 합니다.")
-                    return redirect('signup')
+                    return redirect('accounts:signup_fail')
                 
-            # 4. 전화번호 유효성 검사
+            # 4. 전화번호 중복 & 길이 검사
                 if User.objects.filter(phone=phone).exists():
                     messages.error(request, "이미 가입되어있는 전화번호입니다.")
-                    return redirect('signup')
+                    return redirect('accounts:signup_fail')
                 
-                if len(phone) != 11 and len(phone) != 13:
-                    messages.error(request, "전화번호는 10자리 혹은 13자리(하이픈 포함)이어야 합니다.")
-                    return redirect('signup')
+                if len(phone) != 11:
+                    messages.error(request, "전화번호는 '-'를 제외한 11자리로 작성해주세요.")
+                    return redirect('accounts:signup_fail')
                 
-            # 5. 이메일 유효성 검사
-                if '@' not in email:
-                    messages.error(request, "올바른 이메일 형식이 아닙니다.")
-                    return redirect('signup')
-                
+            # 5. 이메일 중복 검사
                 if User.objects.filter(email=email).exists():
                     messages.error(request, "이미 가입되어있는 이메일 주소입니다.")
-                    # form.add_error('email', '이미 등록된 이메일 주소입니다.')  # 폼에 오류 추가
-                    return redirect('signup')
+                    return redirect('accounts:signup_fail')
                 
+                # 회원가입 성공
                 form.save()
-                print('회원가입 성공')
-                return redirect('accounts:signup_success') # 임시 템플릿 설정
+                return redirect('accounts:signup_success') 
+            else:
+                return redirect('accounts:signup_fail') # 비번 불일치
+        else:
+            return redirect('accounts:signup_fail') # 아이디 중복 or 이메일 @ 미포함시
     else:
         form = CustomUserForm()
 
@@ -66,8 +62,11 @@ def signup(request):
 
 # 회원가입 성공
 def signup_success(request):
-    # print('회원가입 성공')
     return render(request, 'signup_success.html')
+
+# 회원가입 실패
+def signup_fail(request):
+    return render(request, 'signup_fail.html')
 
 # 로그인
 def login(request):
@@ -88,4 +87,4 @@ def login(request):
     
 # 로그아웃
 def logout(request):
-    return redirect('accounts:signup') # 임시 템플릿 설정
+    return redirect('accounts:signup') 
