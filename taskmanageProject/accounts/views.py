@@ -17,7 +17,7 @@ def signup(request):
                 phone = form.cleaned_data['phone']
                 email = form.cleaned_data['email']
 
-                # 1. 아이디 유효성 검사
+            # 1. 아이디 유효성 검사
                 if len(username) < 6 or len(username) > 25:
                     # 장고 관리 페이지에 뜬다.
                     messages.error(request, "아이디는 6~25자여야 합니다.")
@@ -27,17 +27,17 @@ def signup(request):
                     messages.error(request, "이미 사용중인 아이디입니다.")
                     return redirect('signup')
                 
-                # 2. 비밀번호 유효성 검사
+            # 2. 비밀번호 유효성 검사
                 if len(password) < 8:
                     messages.error(request, "비밀번호는 최소 8자 이상이어야 합니다.")
                     return redirect('signup')
                 
-                # 3. 이름 유효성 검사
+            # 3. 이름 유효성 검사
                 if len(name) < 2 or len(name) > 10:
                     messages.error(request, "이름은 2~10자이어야 합니다.")
                     return redirect('signup')
                 
-                # 4. 전화번호 유효성 검사
+            # 4. 전화번호 유효성 검사
                 if User.objects.filter(phone=phone).exists():
                     messages.error(request, "이미 가입되어있는 전화번호입니다.")
                     return redirect('signup')
@@ -46,7 +46,7 @@ def signup(request):
                     messages.error(request, "전화번호는 10자리 혹은 13자리(하이픈 포함)이어야 합니다.")
                     return redirect('signup')
                 
-                # 5. 이메일 유효성 검사
+            # 5. 이메일 유효성 검사
                 if '@' not in email:
                     messages.error(request, "올바른 이메일 형식이 아닙니다.")
                     return redirect('signup')
@@ -58,7 +58,7 @@ def signup(request):
                 
                 form.save()
                 print('회원가입 성공')
-                return redirect('accounts:signup_success')  # 가입 성공 후 페이지로 리다이렉트
+                return redirect('accounts:signup_success') # 임시 템플릿 설정
     else:
         form = CustomUserForm()
 
@@ -80,7 +80,12 @@ def login(request):
             print('로그인 성공')
             return redirect('accounts:signup_success')
         else: 
-            error_message = "아이디 또는 비밀번호가 잘못되었습니다."  # 에러 메시지 설정
+            # 에러 메시지 설정
+            error_message = "아이디 또는 비밀번호가 잘못되었습니다." 
             return render(request, 'login.html', {'error_message': error_message})
     else:
         return render(request, 'login.html')
+    
+# 로그아웃
+def logout(request):
+    return redirect('accounts:signup') # 임시 템플릿 설정
