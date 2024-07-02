@@ -103,4 +103,13 @@ button {
     border: none;
     background: none;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button,
+input,
+::placeholder {
+    font-family: var(--mainfont);
 }

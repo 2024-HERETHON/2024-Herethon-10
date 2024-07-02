@@ -1,5 +1,13 @@
-/* header */
+.main_wrap {
+    position: relative;
+}
 
+#doughnut-chart {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+/* header */
 #header {
     display: flex;
     justify-content: space-between;
@@ -33,6 +41,8 @@
     height: 47px;
     background-color: var(--black);
 }
+
+/* main */
 
 #main {
     display: flex;
@@ -116,4 +126,62 @@
     font-size: 20px;
     display: flex;
     justify-content: space-between;
+}
+
+/* popup */
+
+.popup_wrap {
+    z-index: 10;
+    height: 83vh;
+    width: 100%;
+    background-color: #11111125;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_wrap .popup {
+    box-shadow: 0px 0px 10px 0px #00000045;
+    width: 288px;
+    height: 410px;
+    background-color: var(--white);
+    border-radius: 20px;
+    margin-bottom: 120px;
+    text-align: center;
+    padding: 20px;
+}
+
+.popup img {
+    margin-top: 20px;
+    width: 234px;
+}
+
+.popup h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.popup p {
+    font-size: 18px;
+}
+
+.popup .btn_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup .btn_box button {
+    margin-top: 60px;
+    font-size: 20px;
+    width: 50%;
+    font-weight: 500;
+}
+
+.popup .btn_box .craetebtn {
+    color: var(--main);
+    font-weight: 600;
 }

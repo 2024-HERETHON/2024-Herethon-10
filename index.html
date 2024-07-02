@@ -18,15 +18,15 @@
 </head>
 
 <body>
-
     <div class="main_wrap container">
         <header id="header">
             <h1>기로프</h1>
             <div>
-                <button class="create">
+                <button class="create" onclick="showPop()">
                     <img src="./static/assets/img/plus.svg" alt="">
                 </button>
-                <a href="./template/login/login.html"><div class="profile"></div>
+                <a href="./template/login/login.html">
+                    <div class="profile"></div>
                 </a>
             </div>
         </header>
@@ -89,22 +89,34 @@
                 </div>
             </div>
         </main>
-    </div>
 
-    <script>
-        // 차트 생성
-        new Chart(document.getElementById("doughnut-chart"), {
-            type: 'doughnut',
-            data: {
-                datasets: [
-                    {
-                        backgroundColor: ["var(--gray)", "var(--gray)", "var(--gray)", "var(--gray)", "#C22370"],
-                        data: [10, 20, 10, 10, 50]
-                    }
-                ]
-            },
-        });
-    </script>
+        <!-- 팝업창 -->
+        <div class="popup_wrap">
+            <div class="popup">
+                <div class="first none">
+                    <img src="./static/assets/img/mainpopup.png" alt="">
+                    <h3>팀 만들기</h3>
+                    <p>
+                        팀을 자유롭게 만들어 일을 더욱<br />
+                        효율적으로 관리해보세요!
+                    </p>
+                    <div class="btn_box">
+                        <button class="no" onclick="noPop()">취소</button>
+                        <button class="craetebtn">추가</button>
+                    </div>
+                </div>
+                <div class="second">
+                    <h3>팀명</h3>
+                    <input type="text">
+                    <div class="btn_box">
+                        <button class="no" onclick="noPop()">취소</button>
+                        <button class="craetebtn">다음</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./static/js/mainchart.js"></script>
 </body>
 
 </html>
