@@ -19,11 +19,9 @@
     {% for team in teams %}
     <li>
         <!-- 사진이 있을 경우 -->
-    {% if team.photo %}
-        <a href="{% url 'teams:team_detail' team.id %}">
-            {% if team.photo %}
+        {% if team.photo %}
             <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
-            {% endif %} 
+        {% endif %} 
             - {{ team.name }}
         </a><br>
         {{ team.created_at }} - {{ team.creater.username }}
