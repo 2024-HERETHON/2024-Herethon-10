@@ -13,6 +13,11 @@
         <img src="{{ team.photo.url }}" alt="" height="300">
     {% endif %}
     <!-- 팀 내용 출력 -->
+    {% if team.photo %}
+        <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+    {% else %}
+        <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+    {% endif %}
     <h1> 팀이름: {{team.name}} </h1>
     <h3>팀 생성자 : {{team.creater}}</h3>
     <p> 팀 설명: {{team.description}} </p>

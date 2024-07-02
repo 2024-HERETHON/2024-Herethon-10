@@ -7,7 +7,7 @@ class Team(models.Model):
     members = models.ManyToManyField(User, related_name='teams', blank=True)
     created_at = models.DateTimeField(verbose_name="팀 생성일", auto_now_add=True)
     creater = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    photo = models.ImageField(verbose_name="팀이미지", blank=True, null=True, upload_to='team_photo')
+    photo = models.ImageField(verbose_name="팀이미지", blank=True, null=True, upload_to='team_photo', default='team_photo/default_photo.jpg')
 
     def __str__(self):
         return self.name

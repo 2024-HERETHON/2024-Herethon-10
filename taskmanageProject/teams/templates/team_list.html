@@ -14,7 +14,15 @@
         <ul>
             {% for team in teams %}
                 <li>
-                    <a href="{% url 'teams:team_detail' team.id %}">Team Detail
+                    {% if team.photo %}
+                        <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% else %}
+                        <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% endif %}
+                        
+                    <br>
+                    
+                    <a href="{% url 'teams:team_detail' team.id %}">
                     <strong>팀 이름: {{ team.name }}</strong><br></a>
                     <p>팀 생성일: {{ team.created_at }}</p>
                     팀 생성자 : {{team.creater}}<br>
