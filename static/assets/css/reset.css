@@ -1,0 +1,106 @@
+/* border-box 초기화 */
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+/* 여백 */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+fieldset,
+form,
+legend,
+p,
+blockquote,
+th,
+tr,
+td,
+input,
+select,
+button,
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
+}
+
+/* 시멘틱 태그 불럭화 */
+section,
+aside,
+article,
+header,
+nav {
+    display: block;
+}
+
+/* 폰트 초기화 */
+body,
+button,
+input,
+select,
+table,
+textarea {
+    font-family: "PyeongChangPeace", "Malgun Gothic", "맑은 고딕", Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+/* 링크초기화 */
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* 제목 초기화 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    font-size: 16px;
+}
+/* 리스트 */
+ul, li, ol {
+    list-style: none;
+}
+
+/* 폰트 스타일 초기화 */
+em, address {
+    font-style: normal;
+}
+/* image */
+img {
+    width: 100%;
+    vertical-align: top;
+}
+/* 이미지 대체(IR) 효과 */
+.ir {
+    display: block;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+    text-indent: -9999px;
+}
+
+button {
+    border: none;
+    background: none;
+    outline: none;
+}
