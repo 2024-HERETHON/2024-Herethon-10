@@ -25,11 +25,21 @@ urlpatterns = [
     path('account/',include('accounts.urls', namespace='accounts')),
     path('team/',include('teams.urls', namespace='teams')),
 
-    # 비밀번호 초기화(메일)
-    # path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    # path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
-    # path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    # path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+    # 비밀번호 초기화(메일 전송)
+    path('password_reset/', auth_views.PasswordResetView.as_view(
+        template_name='../../accounts/templates/registration/password_reset_form.html',  # 커스터마이즈한 템플릿 경로 지정
+        email_template_name='../../accounts/templates/registration/password_reset_email.html',  # 이메일 템플릿 경로 지정
+        subject_template_name='../../accounts/templates/registration/password_reset_subject.txt'  # 이메일 제목 템플릿 경로 지정
+    ), name='password_reset'),
+    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(
+        template_name='../../accounts/templates/registration/password_reset_done.html' 
+    ), name="password_reset_done"),
+    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+        template_name='../../accounts/templates/registration/password_reset_confirm.html' 
+    ), name="password_reset_confirm"),
+    path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
+        template_name='../../accounts/templates/registration/password_reset_complete.html' 
+    ), name="password_reset_complete"),
 ]
 
 # 이미지 루트

@@ -12,12 +12,12 @@
      <!-- 회원가입 / 로그인 -->
      {% if user.is_authenticated %} <!--로그인시-->
      <a href="{% url 'accounts:logout' %}">로그아웃</a><br>
-     <a href="{% url 'accounts:change_password' %}">비밀번호 변경</a><br>
      <a href="{% url 'accounts:user_update' user.id %}">회원 정보 수정</a><br>
      <a href="{% url 'accounts:my_page' user.id %}">마이페이지</a></div><br>
      {% else %}  <!--로그아웃시-->
-     <a href="{% url 'accounts:signup' %}">회원가입</a></div>
-     <a href="{% url 'accounts:login' %}">로그인</a></div>
+     <a href="{% url 'accounts:signup' %}">회원가입</a><br>
+     <a href="{% url 'accounts:login' %}">로그인</a><br>
+     <a href="{% url 'password_reset' %}">비밀번호 찾기</a><br>
      {% endif %}
      <!--회원가입 / 로그인 끝-->
 

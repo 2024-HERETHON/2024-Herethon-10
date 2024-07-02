@@ -162,46 +162,11 @@ def my_page(request, id):
     return render(request, 'my_page.html', {'user': user, 'teams':teams, 'id':id})
 
 
-
 #-------------------------------------------------------------------------------------------------
 
-
-# 비밀번호 변경
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # 비번 변경 후 자동 로그인
-            messages.success(request, '비밀번호가 정상적으로 변경되었습니다')
-            return redirect('accounts:base')
-        else:
-            messages.error(request, 'Please correct the error below.')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'change_password.html', {'form': form})
-
-# 비밀번호 초기화
-class MyPasswordResetView(PasswordResetView):
-    success_url=reverse_lazy('accounts:login')
-    template_name = 'password_reset/password_reset_form.html'
-    email_template_name = 'password_reset/password_reset.html'
-    mail_title="비밀번호 재설정"
-
-    def form_valid(self, form):
-        return super().form_valid(form)
-
-class MyPasswordResetConfirmView(PasswordResetConfirmView):
-    success_url=reverse_lazy('accounts:login')
-    template_name = 'password_reset/password_reset_confirm.html'
-
-    def form_valid(self, form):
-        return super().form_valid(form)
     
-# 메일 보내기
+# 메일 보내기(참고용)
 from django.core.mail.message import EmailMessage
-
-
 
 def send_email(request):
     subject = "message"

@@ -46,6 +46,17 @@
       </div>
       <!-- 페이지네이션 끝 --> 
     </div>
-    <a href="{% url 'teams:team_create' %}">새 팀 생성</a>
+
+    <br>
+    <!-- 회원가입 / 로그인 -->
+    {% if user.is_authenticated %} <!--로그인시-->
+    <a href="{% url 'teams:team_create' %}">새 팀 생성</a><br>
+    <a href="{% url 'accounts:user_update' user.id %}">회원 정보 수정</a><br>
+    <a href="{% url 'accounts:my_page' user.id %}">마이페이지</a></div><br>
+    {% endif %}
+     <!--회원가입 / 로그인 끝-->
+     
+     <br>
+     <a href="{% url 'accounts:base' %}">메인페이지</a><br>
 </body>
 </html>

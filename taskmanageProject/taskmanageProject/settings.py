@@ -35,7 +35,10 @@ def get_secret(setting, secrets=secrets):
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_secret("SECRET_KEY")
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = "django-insecure-_5-^5)+r$^04)!e$z7r12pxsace!^jh=wvusf(vr6!k!t+$i&*"
+# SECURITY WARNING: don't run with debug turned on in production!
 # secret key 끝
 
 from pathlib import Path
@@ -47,10 +50,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_5-^5)+r$^04)!e$z7r12pxsace!^jh=wvusf(vr6!k!t+$i&*'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []

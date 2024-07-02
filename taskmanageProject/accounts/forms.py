@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import PasswordChangeForm
 
 
+# 커스텀 유저
 class CustomUserForm(forms.ModelForm):
     class Meta:
         model = User
@@ -15,7 +16,8 @@ class CustomUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-    
+
+# 커스텀 유저 업데이트    
 class CustomUserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -23,7 +25,6 @@ class CustomUserUpdateForm(forms.ModelForm):
     
 
 #--------------------------------------------------------------------------------------------------------
-
 
 
 class CustomPasswordChangeForm(PasswordChangeForm):
