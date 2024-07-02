@@ -15,17 +15,18 @@
     이름: {{ user.name }}
 
     <hr>
-
     {% for team in teams %}
-    <li>
-        <!-- 사진이 있을 경우 -->
-        {% if team.photo %}
-            <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+        {% if team.creater.username == user.username %}
+            <li>
+                <a href="{% url 'teams:team_detail' team.id %}">
+                    {% if team.photo %} <!-- 사진이 있을 경우 -->
+                    <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% endif %} 
+                    - {{ team.name }}
+                </a><br>
+                {{ team.created_at }} - {{ team.creater.username }}
+            </li>
         {% endif %} 
-            - {{ team.name }}
-        </a><br>
-        {{ team.created_at }} - {{ team.creater.username }}
-    </li>
     {% endfor %}
 </body>
 </html>
