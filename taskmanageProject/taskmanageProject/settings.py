@@ -48,7 +48,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-_5-^5)+r$^04)!e$z7r12pxsace!^jh=wvusf(vr6!k!t+$i&*'
+SECRET_KEY = 'django-insecure-_5-^5)+r$^04)!e$z7r12pxsace!^jh=wvusf(vr6!k!t+$i&*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -99,11 +99,9 @@ EMAIL_PORT = '587'
 
 # 발신할 이메일
 EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
-# EMAIL_HOST_USER = "taskmanager202407@naver.com"
 
 # 발신할 메일의 비밀번호
 EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
-# EMAIL_HOST_PASSWORD = "taskmanager_0707"
 
 # TLS 보안 방법
 EMAIL_USE_TLS = True
