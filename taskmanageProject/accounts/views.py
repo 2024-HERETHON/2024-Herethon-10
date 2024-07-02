@@ -1,9 +1,14 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User
-from .forms import CustomUserForm
+from .forms import CustomUserForm, CustomUserUpdateForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from teams.models import Team
 
 
 # 첫 화면
@@ -12,8 +17,8 @@ def base(request):
 
 # 회원가입
 def signup(request):
-    if request.method == 'POST':
-        form = CustomUserForm(request.POST)
+    if request.method == 'POST' or request.method == 'FILES':
+        form = CustomUserForm(request.POST, request.FILES)
         if form.is_valid():
             if request.POST['password'] == request.POST['repeat']:
                 username = form.cleaned_data['username']
@@ -21,6 +26,7 @@ def signup(request):
                 name = form.cleaned_data['name']
                 phone = form.cleaned_data['phone']
                 email = form.cleaned_data['email']
+                birthdate = form.cleaned_data['birthdate']
 
             # 1. 아이디 길이 검사
                 if len(username) < 6 or len(username) > 25:
@@ -72,6 +78,60 @@ def signup_success(request):
 def signup_fail(request):
     return render(request, 'signup_fail.html')
 
+# 회원정보 수정
+def user_update(request, id):
+    user = get_object_or_404(User, pk=id)
+
+    if request.method == 'POST' or request.method == 'FILES':
+        form = CustomUserUpdateForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
+            email = form.cleaned_data['email']
+            birthdate = form.cleaned_data['birthdate']
+
+        # 1. 아이디 길이 검사
+            if len(username) < 6 or len(username) > 25:
+                # 장고 관리 페이지에 뜬다.
+                messages.error(request, "아이디는 6~25자여야 합니다.")
+                return redirect('accounts:signup_fail')
+            
+        # 2. 이름 길이 검사
+            if len(name) < 2 or len(name) > 15:
+                messages.error(request, "이름은 2~10자이어야 합니다.")
+                return redirect('accounts:signup_fail')
+            
+        # 3. 전화번호 중복 & 길이 검사
+            if User.objects.filter(phone=phone).exclude(pk=user.pk).exists():
+                messages.error(request, "이미 가입되어있는 전화번호입니다.")
+                return redirect('accounts:signup_fail')
+            
+            if len(phone) != 11:
+                messages.error(request, "전화번호는 '-'를 제외한 11자리로 작성해주세요.")
+                return redirect('accounts:signup_fail')
+            
+        # 4. 이메일 중복 검사
+            if User.objects.filter(email=email).exclude(pk=user.pk).exists():
+                messages.error(request, "이미 가입되어있는 이메일 주소입니다.")
+                return redirect('accounts:signup_fail')
+
+            user.username = username
+            user.name = name
+            user.phone = phone
+            user.email = email
+            user.birthdate = birthdate
+
+            # 회원 수정 성공
+            form.save()
+            return redirect('accounts:base') 
+        else:
+            return redirect('accounts:signup_fail') # 아이디 중복 or 이메일 @ 미포함시
+    else:
+        form = CustomUserUpdateForm(instance=user)
+
+    return render(request, 'signup.html', {'form':form, 'id':id})
+    
 # 로그인
 def login(request):
     if request.method=='POST':
@@ -94,3 +154,58 @@ def logout(request):
     auth_logout(request)
     print('로그아웃 성공')
     return redirect('accounts:base') 
+
+# 마이페이지
+def my_page(request, id):
+    user = get_object_or_404(User, pk=id)
+    teams = Team.objects.filter(creater=user)
+    return render(request, 'my_page.html', {'user': user, 'teams':teams, 'id':id})
+
+
+
+#-------------------------------------------------------------------------------------------------
+
+
+# 비밀번호 변경
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # 비번 변경 후 자동 로그인
+            messages.success(request, '비밀번호가 정상적으로 변경되었습니다')
+            return redirect('accounts:base')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {'form': form})
+
+# 비밀번호 초기화
+class MyPasswordResetView(PasswordResetView):
+    success_url=reverse_lazy('accounts:login')
+    template_name = 'password_reset/password_reset_form.html'
+    email_template_name = 'password_reset/password_reset.html'
+    mail_title="비밀번호 재설정"
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url=reverse_lazy('accounts:login')
+    template_name = 'password_reset/password_reset_confirm.html'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+    
+# 메일 보내기
+from django.core.mail.message import EmailMessage
+
+
+
+def send_email(request):
+    subject = "message"
+    to = ["hayoun1114@naver.com"]
+    from_email = "taskmanager202407@naver.com"
+    message = "메지시 테스트"
+    EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()

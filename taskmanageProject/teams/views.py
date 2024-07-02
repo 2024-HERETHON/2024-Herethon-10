@@ -45,7 +45,7 @@ def team_update(request, id):
         form = TeamModelForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('teams:team_detail')
+            return redirect('teams:team_detail',  id=id)
     else:
         form = TeamModelForm(instance=post)
         return render(request, 'team_create.html', {'form':form, 'id':id})
@@ -69,6 +69,8 @@ def team_detail(request, id):
     team = get_object_or_404(Team, pk=id)
     # team = get_object_or_404(Team, pk=id)
     return render(request, 'team_detail.html', {'team' : team, 'id':id})
+
+#--------------------------------------------------------------------------------
 
 # 유저 찾기
 # def user_search(request):

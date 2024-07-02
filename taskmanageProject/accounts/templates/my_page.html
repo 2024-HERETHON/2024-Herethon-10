@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+</head>
+<body>
+    <h2>마이페이지</h2>
+
+    프로필 사진: <img src="{{ user.profile.url }}" alt="Profile Picture" style="width: 100px; height: 100px";><br>
+    아아디: {{ user.username }}<br>
+    이름: {{ user.name }}
+
+    <hr>
+
+    {% for team in teams %}
+    <li>
+        <!-- 사진이 있을 경우 -->
+    {% if team.photo %}
+        <a href="{% url 'teams:team_detail' team.id %}">
+            {% if team.photo %}
+            <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+            {% endif %} 
+            - {{ team.name }}
+        </a><br>
+        {{ team.created_at }} - {{ team.creater.username }}
+    </li>
+    {% endfor %}
+</body>
+</html>

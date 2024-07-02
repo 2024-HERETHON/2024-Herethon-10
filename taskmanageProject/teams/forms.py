@@ -15,6 +15,8 @@ class TeamModelForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['members'].queryset = User.objects.all().order_by('username')
 
+#-------------------------------------------------------------------------------------
+
 # 유저 찾기(자바스크립트로 구현해야함)
 class UserSearchForm(forms.Form):
     search_query = forms.CharField(label='Search users', max_length=100)
