@@ -4,10 +4,8 @@ from .models import User
 from .forms import CustomUserForm, CustomUserUpdateForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
-from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+# from django.contrib.auth.forms import PasswordChangeForm
+# from django.contrib.auth import update_session_auth_hash
 from teams.models import Team
 
 
@@ -16,7 +14,7 @@ def base(request):
     return render(request, 'account_base.html')
 
 # 회원가입
-def signup(request):
+def signup(request,  edit=False):
     if request.method == 'POST' or request.method == 'FILES':
         form = CustomUserForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,56 +28,54 @@ def signup(request):
 
             # 1. 아이디 길이 검사
                 if len(username) < 6 or len(username) > 25:
-                    # 장고 관리 페이지에 뜬다.
-                    messages.error(request, "아이디는 6~25자여야 합니다.")
-                    return redirect('accounts:signup_fail')
+                    error_message = "아이디를 6자 이상 입력해주세요." 
+                    return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
                 
             # 2. 비밀번호 길이 검사
                 if len(password) < 8:
-                    messages.error(request, "비밀번호는 최소 8자 이상이어야 합니다.")
-                    return redirect('accounts:signup_fail')
+                    error_message = "비밀번호를 8자 이상 입력해주세요." 
+                    return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
                 
             # 3. 이름 길이 검사
                 if len(name) < 2 or len(name) > 15:
-                    messages.error(request, "이름은 2~10자이어야 합니다.")
-                    return redirect('accounts:signup_fail')
+                    error_message = "이름을 2자 이상 입력해주세요." 
+                    return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
                 
             # 4. 전화번호 중복 & 길이 검사
                 if User.objects.filter(phone=phone).exists():
-                    messages.error(request, "이미 가입되어있는 전화번호입니다.")
-                    return redirect('accounts:signup_fail')
+                    error_message = "이미 가입되어있는 전화번호입니다." 
+                    return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
                 
                 if len(phone) != 11:
-                    messages.error(request, "전화번호는 '-'를 제외한 11자리로 작성해주세요.")
-                    return redirect('accounts:signup_fail')
+                    error_message = "'-'를 제외한 전화번호를 입력해주세요." 
+                    return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
                 
             # 5. 이메일 중복 검사
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, "이미 가입되어있는 이메일 주소입니다.")
-                    return redirect('accounts:signup_fail')
+                    error_message = "이미 존재하는 이메일입니다." 
+                    return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
                 
                 # 회원가입 성공
                 form.save()
                 return redirect('accounts:base') 
-            else:
-                return redirect('accounts:signup_fail') # 비번 불일치
+            
+            # 6. 비밀번호 일치 안할 경우
+            else: 
+                error_message = "비밀번호가 일치하지 않습니다." 
+                return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
+        # 7. 아이디가 이미 존재할 경우
         else:
-            return redirect('accounts:signup_fail') # 아이디 중복 or 이메일 @ 미포함시
+            error_message = "이미 존재하는 아이디입니다." 
+            return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
     else:
         form = CustomUserForm()
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form, 'is_edit': edit})
 
-# 회원가입 성공
-def signup_success(request):
-    return render(request, 'account_base.html')
 
-# 회원가입 실패
-def signup_fail(request):
-    return render(request, 'signup_fail.html')
 
 # 회원정보 수정
-def user_update(request, id):
+def user_update(request, id, edit=True):
     user = get_object_or_404(User, pk=id)
 
     if request.method == 'POST' or request.method == 'FILES':
@@ -93,28 +89,27 @@ def user_update(request, id):
 
         # 1. 아이디 길이 검사
             if len(username) < 6 or len(username) > 25:
-                # 장고 관리 페이지에 뜬다.
-                messages.error(request, "아이디는 6~25자여야 합니다.")
-                return redirect('accounts:signup_fail')
+                error_message = "아이디를 6자 이상 입력해주세요." 
+                return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
             
         # 2. 이름 길이 검사
             if len(name) < 2 or len(name) > 15:
-                messages.error(request, "이름은 2~10자이어야 합니다.")
-                return redirect('accounts:signup_fail')
+                error_message = "이름을 2자 이상 입력해주세요." 
+                return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
             
-        # 3. 전화번호 중복 & 길이 검사
+         # 3. 전화번호 중복 & 길이 검사
             if User.objects.filter(phone=phone).exclude(pk=user.pk).exists():
-                messages.error(request, "이미 가입되어있는 전화번호입니다.")
-                return redirect('accounts:signup_fail')
+                error_message = "이미 가입되어있는 전화번호입니다." 
+                return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
             
             if len(phone) != 11:
-                messages.error(request, "전화번호는 '-'를 제외한 11자리로 작성해주세요.")
-                return redirect('accounts:signup_fail')
+                error_message = "'-'를 제외한 전화번호를 입력해주세요." 
+                return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
             
         # 4. 이메일 중복 검사
             if User.objects.filter(email=email).exclude(pk=user.pk).exists():
-                messages.error(request, "이미 가입되어있는 이메일 주소입니다.")
-                return redirect('accounts:signup_fail')
+                error_message = "이미 존재하는 이메일입니다." 
+                return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
 
             user.username = username
             user.name = name
@@ -125,13 +120,18 @@ def user_update(request, id):
             # 회원 수정 성공
             form.save()
             return redirect('accounts:base') 
+        
+        #  5. 아이디가 이미 존재할 경우
         else:
-            return redirect('accounts:signup_fail') # 아이디 중복 or 이메일 @ 미포함시
+            error_message = "이미 존재하는 아이디입니다." 
+            return render(request, 'signup.html', {'error_message': error_message, 'form': form, 'is_edit': edit})
     else:
         form = CustomUserUpdateForm(instance=user)
 
-    return render(request, 'signup.html', {'form':form, 'id':id})
-    
+    return render(request, 'signup.html', {'form':form, 'id':id, 'is_edit': edit})
+
+
+
 # 로그인
 def login(request):
     if request.method=='POST':
@@ -149,11 +149,13 @@ def login(request):
     else:
         return render(request, 'login.html')
     
+
 # 로그아웃
 def logout(request):
     auth_logout(request)
     print('로그아웃 성공')
     return redirect('accounts:base') 
+
 
 # 마이페이지
 def my_page(request, id):
