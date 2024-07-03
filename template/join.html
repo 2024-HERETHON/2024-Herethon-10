@@ -48,8 +48,9 @@
                 <div>
                     <input type="password" id="userPassword" placeholder="8자 이상">
                     <div class="box">
-                        <button><img class="delete" src="../static/assets/img/deletebtn.svg" alt="delete"></button>
-                        <button><img src="../static/assets/img/password.svg" alt="password"></button>
+                        <button type="button" onclick="togglePassword('userPassword', this)">
+                            <img src="../static/assets/img/password.svg" alt="password">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -59,7 +60,9 @@
                     <input type="password" id="userPasswordre" placeholder="비밀번호를 한 번 더 입력해주세요.">
                     <div class="box">
                         <button><img class="delete" src="../static/assets/img/deletebtn.svg" alt="delete"></button>
-                        <button><img src="../static/assets/img/password.svg" alt="password"></button>
+                        <button type="button" onclick="togglePassword('userPasswordre', this)">
+                            <img src="../static/assets/img/password.svg" alt="password">
+                        </button>
                     </div>
                 </div>
             </div>

@@ -17,3 +17,14 @@ checkboxes.forEach(checkbox => {
         }
     });
 });
+
+function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+        button.innerHTML = '<img src="../static/assets/img/password.svg" alt="hide">';
+    } else {
+        input.type = "password";
+        button.innerHTML = '<img src="../static/assets/img/passwordshow.svg" alt="show">';
+    }
+}
