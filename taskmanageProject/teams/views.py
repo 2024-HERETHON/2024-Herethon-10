@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from .models import Team
 from accounts.models import User
 from django.shortcuts import get_object_or_404
-from teams.forms import TeamModelForm, UserSearchForm
+from teams.forms import TeamModelForm
 from django.core.paginator import Paginator
 
 
