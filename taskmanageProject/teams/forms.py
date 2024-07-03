@@ -22,8 +22,3 @@ class TeamModelForm(forms.ModelForm):
             'members': forms.CheckboxSelectMultiple(),  # 여러 명 선택 가능한 체크박스 위젯
         }
 
-#-------------------------------------------------------------------------------------
-
-# 유저 찾기(자바스크립트로 구현해야함)
-class UserSearchForm(forms.Form):
-    search_query = forms.CharField(label='Search users', max_length=100)

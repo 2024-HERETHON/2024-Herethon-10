@@ -75,17 +75,42 @@ def team_delete(request, team_id):
 
 # 팀 전체 조회
 def team_list(request):
-    teams = Team.objects.all().order_by('-created_at')
-    paginator = Paginator(teams, 3)
-    pagnum = request.GET.get('page')
-    teams = paginator.get_page(pagnum)
-    return render(request, 'team_list.html', {'teams': teams})
+    if request.user.is_authenticated:
+        liked_teams = Team.objects.filter(like_users=request.user)
+        other_teams = Team.objects.exclude(like_users=request.user)
+    else:
+        liked_teams = Team.objects.none()
+        other_teams = Team.objects.all()
+    
+    context = {
+        'liked_teams': liked_teams,
+        'other_teams': other_teams,
+    }
+    return render(request, 'team_list.html', context)
+# def team_list(request):   
+#     teams = Team.objects.all().order_by('-created_at')
+#     paginator = Paginator(teams, 3)
+#     pagnum = request.GET.get('page')
+#     teams = paginator.get_page(pagnum)
+#     return render(request, 'team_list.html', {'teams': teams})
 
 # 팀 상세 조회
 def team_detail(request, id): 
     team = get_object_or_404(Team, pk=id)
     # team = get_object_or_404(Team, pk=id)
     return render(request, 'team_detail.html', {'team' : team, 'id':id})
+
+
+def likes(request, team_id):
+    if request.user.is_authenticated:
+        team = get_object_or_404(Team, pk=team_id)
+
+        if team.like_users.filter(pk=request.user.pk).exists():
+            team.like_users.remove(request.user)
+        else:
+            team.like_users.add(request.user)
+        return redirect('teams:team_detail',  id=team.id)
+    return redirect('teams:team_detail',  id=team.id)
 
 #--------------------------------------------------------------------------------
 

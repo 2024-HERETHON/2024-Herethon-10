@@ -11,8 +11,9 @@
     <h1>팀 리스트</h1>
     
     <div>
+        <h2><유저가 좋아요 한 팀들></h2>
         <ul>
-            {% for team in teams %}
+            {% for team in liked_teams %}
                 <li>
                     {% if team.photo %}
                         <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
@@ -25,7 +26,7 @@
                     <a href="{% url 'teams:team_detail' team.id %}">
                     <strong>팀 이름: {{ team.name }}</strong><br></a>
                     <p>팀 생성일: {{ team.created_at }}</p>
-                    팀 생성자 : {{team.creater}}<br>
+                    팀 생성자 : {{ team.creater }}<br>
                     팀 설명: {{ team.description }}<br><br>
                     <strong>멤버:</strong>
                     <ul>
@@ -36,24 +37,37 @@
                 </li><hr>
             {% endfor %}
         </ul>
-      <!-- 페이지네이션 -->
-      <div>
-        {% if teams.has_previous %} <!--지금 잘라서 보여주는 teams의 목록이 이전 페이지가 있다면-->
-        <a href="?page=1">첫 페이지</a>
-        <a href="?page={{teams.previous_page_number}}">이전 페이지</a> <!--teams의 이전 페이지 숫자를 반환해라-->
-        {% endif %}
-
-        <span> {{ teams.number }} </span> <!--현재 페이지 넘버-->
-        <span> / </span>
-        <span> {{ teams.paginator.num_pages }} </span> <!--잘린 posts가 갖고 있는 총 페이지 수 반환-->
-
-        {% if teams.has_next %} <!--다음 페이지가 있다면-->
-        <a href="?page={{teams.next_page_number}}">다음 페이지</a>
-        <a href="?page={{teams.paginator.num_pages}}">마지막 페이지</a>
-        {% endif %}
-      </div>
-      <!-- 페이지네이션 끝 --> 
     </div>
+
+    <div>
+        <h2><유저가 좋아요 안 한 팀들></h2>
+        <ul>
+            {% for team in other_teams %}
+                <li>
+                    {% if team.photo %}
+                        <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% else %}
+                        <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% endif %}
+                        
+                    <br>
+                    
+                    <a href="{% url 'teams:team_detail' team.id %}">
+                    <strong>팀 이름: {{ team.name }}</strong><br></a>
+                    <p>팀 생성일: {{ team.created_at }}</p>
+                    팀 생성자 : {{ team.creater }}<br>
+                    팀 설명: {{ team.description }}<br><br>
+                    <strong>멤버:</strong>
+                    <ul>
+                        {% for member in team.members.all %}
+                            <li>{{ member.username }}</li>
+                        {% endfor %}
+                    </ul>
+                </li><hr>
+            {% endfor %}
+        </ul>
+    </div>
+
 
     <br>
     <!-- 회원가입 / 로그인 -->
