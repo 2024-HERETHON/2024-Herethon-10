@@ -5,10 +5,6 @@ form {
     padding: 10px;
 }
 
-.container {
-    height: 100%;
-}
-
 form>.userPass {
     position: relative;
     margin-bottom: 20px;
