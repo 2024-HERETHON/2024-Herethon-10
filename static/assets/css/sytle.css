@@ -2,7 +2,7 @@
     --main: #C22370;
 
     --black: #222;
-    --gray: #808080;
+    --gray: #999999;
     --white: #fefefe;
 
     --mainfont: 'Pretendard-Regular';
@@ -30,4 +30,8 @@ button {
 
 .none {
     display: none !important;
+}
+
+input {
+    outline: none;
 }

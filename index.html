@@ -20,80 +20,92 @@
 <body>
     <div class="main_wrap container">
         <header id="header">
-            <h1>기로프</h1>
+            <h1><a href="/">기로프</a></h1>
             <div>
                 <button class="create" onclick="showPop()">
                     <img src="./static/assets/img/plus.svg" alt="">
                 </button>
-                <a href="./template/login/login.html">
+                <a href="./template/mypage/mypage.html">
                     <div class="profile"></div>
                 </a>
             </div>
         </header>
         <main id="main">
-            <div class="box">
-                <div class="top">
-                    <h2>여기톤 10조</h2>
-                    <div class="profile_box">
-                        <div class="profile profile01"></div>
-                        <div class="profile profile02"></div>
-                        <div class="profile profile03"></div>
-                        <div class="profile profile04"></div>
-                        <div class="profile profile05"></div>
+            <a href="./template/team/team.html">
+                <div class="box">
+                    <div class="top">
+                        <h2>여기톤 10조</h2>
+                        <div class="profile_box">
+                            <div class="profile profile01"></div>
+                            <div class="profile profile02"></div>
+                            <div class="profile profile03"></div>
+                            <div class="profile profile04"></div>
+                            <div class="profile profile05"></div>
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <div class="graph">
+                            <canvas id="doughnut-chart" width="100" height="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="day">D-17</div>
+                        <div class="parcent">60%</div>
                     </div>
                 </div>
-                <div class="middle">
-                    <div class="graph">
-                        <canvas id="doughnut-chart" width="100" height="100"></canvas>
+            </a>
+            <a href="">
+                <div class="box">
+                    <div class="top">
+                        <h2>여기톤 10조</h2>
+                        <div class="profile_box">
+                            <div class="profile profile01"></div>
+                            <div class="profile profile02"></div>
+                            <div class="profile profile03"></div>
+                            <div class="profile profile04"></div>
+                            <div class="profile profile05"></div>
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <div class="graph">
+                            <canvas id="doughnut-chart" width="100" height="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="day">D-17</div>
+                        <div class="parcent">60%</div>
                     </div>
                 </div>
-                <div class="bottom">
-                    <div class="day">D-17</div>
-                    <div class="parcent">60%</div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="top">
-                    <h2>여기톤 10조</h2>
-                    <div class="profile_box">
-                        <div class="profile profile01"></div>
-                        <div class="profile profile02"></div>
+            </a>
+            <a href="">
+                <div class="box">
+                    <div class="top">
+                        <h2>여기톤 10조</h2>
+                        <div class="profile_box">
+                            <div class="profile profile01"></div>
+                            <div class="profile profile02"></div>
+                            <div class="profile profile03"></div>
+                            <div class="profile profile04"></div>
+                            <div class="profile profile05"></div>
+                        </div>
+                    </div>
+                    <div class="middle">
+                        <div class="graph">
+                            <canvas id="doughnut-chart" width="100" height="100"></canvas>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="day">D-17</div>
+                        <div class="parcent">60%</div>
                     </div>
                 </div>
-                <div class="middle">
-                    <div class="graph">
-                        <canvas id="doughnut-chart" width="100" height="100"></canvas>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <div class="day">--</div>
-                    <div class="parcent">50%</div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="top">
-                    <h2>여기톤 10조</h2>
-                    <div class="profile_box">
-                        <div class="profile profile01"></div>
-                        <div class="profile profile02"></div>
-                    </div>
-                </div>
-                <div class="middle">
-                    <div class="graph">
-                        <canvas id="doughnut-chart" width="100" height="100"></canvas>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <div class="day">D-41</div>
-                    <div class="parcent">25%</div>
-                </div>
-            </div>
+            </a>
         </main>
 
         <!-- 팝업창 -->
-        <div class="popup_wrap">
+        <div class="popup_wrap none">
             <div class="popup">
-                <div class="first none">
+                <div class="first">
                     <img src="./static/assets/img/mainpopup.png" alt="">
                     <h3>팀 만들기</h3>
                     <p>
@@ -102,21 +114,95 @@
                     </p>
                     <div class="btn_box">
                         <button class="no" onclick="noPop()">취소</button>
-                        <button class="craetebtn">추가</button>
+                        <button class="craetebtn" onclick="teamName()">추가</button>
                     </div>
                 </div>
-                <div class="second">
+                <div class="second none">
                     <h3>팀명</h3>
-                    <input type="text">
+                    <input type="text" placeholder="Untitled">
                     <div class="btn_box">
                         <button class="no" onclick="noPop()">취소</button>
-                        <button class="craetebtn">다음</button>
+                        <button class="craetebtn" onclick="addFriend()">다음</button>
+                    </div>
+                </div>
+                <div class="third none">
+                    <h3>Untitled</h3>
+                    <div class="team_list">
+                        <div>
+                            <img src="./static/assets/img/profile.png" alt="profile">
+                            <p>rlfhvm (나)</p>
+                        </div>
+                        <div>
+                            <img src="./static/assets/img/profile.png" alt="profile">
+                            <p>rlfhvm (나)</p>
+                        </div>
+                        <div>
+                            <img src="./static/assets/img/profile.png" alt="profile">
+                            <p>rlfhvm (나)</p>
+                        </div>
+                        <div>
+                            <img src="./static/assets/img/profile.png" alt="profile">
+                            <p>rlfhvm (나)</p>
+                        </div>
+                        <div>
+                            <img src="./static/assets/img/profile.png" alt="profile">
+                            <p>rlfhvm (나)</p>
+                        </div>
+                    </div>
+                    <div class="btn_box">
+                        <button class="no" onclick="noPop()">취소</button>
+                        <button class="craetebtn">완료</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- 친구 추가창 -->
+        <div class="add_team none">
+            <div class="search">
+                <input type="text" placeholder="아이디로 검색하기">
+                <button><img src="./static/assets/img/search.svg" alt="search"></button>
+            </div>
+            <div class="plus_friend">
+                <div>
+                    <p>person6</p>
+                    <button><img src="./static/assets/img/deletebtn_white.svg" alt="delete"></button>
+                </div>
+            </div>
+            <div class="list_wrap">
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+                <div class="list">
+                    <p>rlfhvm</p>
+                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="./static/js/mainchart.js"></script>
+    <script src="./static/js/main.js"></script>
+    <script src="./static/js/chart.js"></script>
 </body>
 
 </html>

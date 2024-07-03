@@ -50,9 +50,12 @@
     flex-wrap: wrap;
 }
 
+#main a {
+    width: 48%;
+}
+
 #main .box {
     height: 285px;
-    width: 48%;
     margin-bottom: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px 0px #00000019;
@@ -154,7 +157,7 @@
     padding: 20px;
 }
 
-.popup img {
+.popup>img {
     margin-top: 20px;
     width: 234px;
 }
@@ -174,7 +177,7 @@
     justify-content: space-between;
 }
 
-.popup .btn_box button {
+.popup .btn_box>button {
     margin-top: 60px;
     font-size: 20px;
     width: 50%;
@@ -185,3 +188,146 @@
     color: var(--main);
     font-weight: 600;
 }
+
+.popup .second {
+    margin-top: 100px;
+}
+
+.popup .second h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.popup .second input {
+    border: 0;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.popup .second .btn_box {
+    margin-top: 69px;
+}
+
+.popup .third h3 {
+    border-bottom: 1px solid #d0d0d0;
+    padding: 10px 0;
+}
+
+.popup .third .team_list {
+    height: 230px;
+    overflow-y: scroll;
+    overflow: auto;
+    padding: 10px;
+}
+
+.popup .third .team_list div {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.popup .third .team_list div img {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 3px;
+}
+
+.popup .third .btn_box button {
+    margin-top: 50px;
+}
+
+/* 스크롤바 */
+
+.team_list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.team_list::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.team_list::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
+}
+
+/* 팀원 추가하기 */
+
+.add_team {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 20;
+    background-color: var(--white);
+    width: 430px;
+    height: 480px;
+    transform: translateX(-50%);
+    padding: 40px 30px 20px;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px -10px 14.5px 0px #00000025;
+}
+
+.search {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search input {
+    font-size: 18px;
+    width: 100%;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 0;
+}
+
+.search img {
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+}
+
+.plus_friend {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.plus_friend div {
+    background-color: #D9D9D9;
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: relative;
+    margin-right: 10px;
+    box-shadow: 0px 0px 10px 0px #00000010;
+}
+
+.plus_friend div p {
+    color: #555;
+}
+
+.plus_friend div button {
+    top: 0;
+    right: -8px;
+    position: absolute;
+}
+
+.list_wrap .list {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #d0d0d0;
+    color: #292929;
+    padding: 10px;
+}
+
+.list_wrap .list img {
+    width: 24px;
+}
+
+/* 최종 팀 빌딩 */

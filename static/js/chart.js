@@ -10,14 +10,3 @@ new Chart(document.getElementById("doughnut-chart"), {
         ]
     },
 });
-
-const Popup = document.querySelector('.popup_wrap');
-const No = document.querySelector('.no');
-
-function showPop() {
-    Popup.classList.remove('none')
-}
-
-function noPop() {
-    Popup.classList.add('none')
-}
