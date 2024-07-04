@@ -1,30 +1,3 @@
-const Popup = document.querySelector('.popup_wrap');
-const No = document.querySelector('.no');
-const addTeam = document.querySelector('.add_team');
-const First = document.querySelector('.first');
-const Second = document.querySelector('.second');
-
-function showPop() {
-    Popup.classList.remove('none');
-}
-
-function noPop() {
-    Popup.classList.add('none');
-}
-
-// gsap 기본 상태
-gsap.set(addTeam, { bottom: '-400px' });
-
-function addFriend() {
-    addTeam.classList.remove('none');
-    gsap.to('.add_team', { duration: 1, bottom: "0", ease: "power3.out"});
-}
-
-function teamName() {
-    First.classList.add('none');
-    Second.classList.remove('none');
-}
-
 // document.addEventListener('DOMContentLoaded', function () {
 //     const main = document.getElementById('main');
 //     const teams = [

@@ -102,113 +102,64 @@
                 </div>
             </a>
         </main>
-
-        <!-- 팝업창 -->
-        <div class="popup_wrap none">
-            <div class="popup">
-                <div class="first">
-                    <img src="./static/assets/img/mainpopup.png" alt="">
-                    <h3>팀 만들기</h3>
-                    <p>
-                        팀을 자유롭게 만들어 일을 더욱<br />
-                        효율적으로 관리해보세요!
-                    </p>
-                    <div class="btn_box">
-                        <button class="no" onclick="noPop()">취소</button>
-                        <button class="craetebtn" onclick="teamName()">추가</button>
-                    </div>
-                </div>
-                <div class="second none">
-                    <h3>팀명</h3>
-                    <input type="text" placeholder="Untitled">
-                    <div class="btn_box">
-                        <button class="no" onclick="noPop()">취소</button>
-                        <button class="craetebtn" onclick="addFriend()">다음</button>
-                    </div>
-                </div>
-                <div class="third none">
-                    <h3>Untitled</h3>
-                    <div class="team_list">
-                        <div>
-                            <img src="./static/assets/img/profile.png" alt="profile">
-                            <p>rlfhvm (나)</p>
-                        </div>
-                        <div>
-                            <img src="./static/assets/img/profile.png" alt="profile">
-                            <p>rlfhvm (나)</p>
-                        </div>
-                        <div>
-                            <img src="./static/assets/img/profile.png" alt="profile">
-                            <p>rlfhvm (나)</p>
-                        </div>
-                        <div>
-                            <img src="./static/assets/img/profile.png" alt="profile">
-                            <p>rlfhvm (나)</p>
-                        </div>
-                        <div>
-                            <img src="./static/assets/img/profile.png" alt="profile">
-                            <p>rlfhvm (나)</p>
-                        </div>
-                    </div>
-                    <div class="btn_box">
-                        <button class="no" onclick="noPop()">취소</button>
-                        <button class="craetebtn">완료</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 친구 추가창 -->
-        <div class="add_team none">
-            <div class="search">
-                <input type="text" placeholder="아이디로 검색하기">
-                <button><img src="./static/assets/img/search.svg" alt="search"></button>
-            </div>
-            <div class="plus_friend">
-                <div>
-                    <p>person6</p>
-                    <button><img src="./static/assets/img/deletebtn_white.svg" alt="delete"></button>
-                </div>
-            </div>
-            <div class="list_wrap">
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-                <div class="list">
-                    <p>rlfhvm</p>
-                    <button><img src="./static/assets/img/profilebtn.svg" alt=""></button>
-                </div>
-            </div>
-        </div>
+        <div id="index-create-container"></div>
     </div>
 
     <!-- script -->
     <!-- gsap -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
-    <script src="./static/js/main.js"></script>
     <script src="./static/js/chart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('./template/index_create.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('index-create-container').innerHTML = data;
+                    initializeMainJS();
+                })
+                .catch(error => console.error('Error loading index_create.html:', error));
+        });
+    </script>
+
+    <script>
+        function initializeMainJS() {
+            const Popup = document.querySelector('.popup_wrap');
+            const No = document.querySelector('.no');
+            const addTeam = document.querySelector('.add_team');
+            const First = document.querySelector('.first');
+            const Second = document.querySelector('.second');
+
+            function showPop() {
+                console.log(Popup)
+                Popup.classList.remove('none');
+            }
+
+            function noPop() {
+                Popup.classList.add('none');
+            }
+
+            // gsap 기본 상태
+            gsap.set(addTeam, { bottom: '-400px' });
+
+            function addFriend() {
+                addTeam.classList.remove('none');
+                gsap.to('.add_team', { duration: 1, bottom: "0", ease: "power3.out" });
+            }
+
+            function teamName() {
+                console.log(First.classList)
+                First.classList.add('none');
+                Second.classList.remove('none');
+            }
+
+            window.showPop = showPop;
+            window.noPop = noPop;
+            window.addFriend = addFriend;
+            window.teamName = teamName;
+        }
+    </script>
+
 </body>
 
 </html>
