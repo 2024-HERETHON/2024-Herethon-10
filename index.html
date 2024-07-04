@@ -37,7 +37,7 @@
                     <div class="top">
                         <div class="top_header">
                             <h2>여기톤 10조</h2>
-                            <img src="./static/assets/img/pin_bold.svg" alt="">
+                            <img class="pin_img" src="./static/assets/img/pin_bold.svg" alt="">
                         </div>
                         <div class="profile_box">
                             <img src="./static/assets/img/profile.png" alt="profile" class="profile">
@@ -59,7 +59,7 @@
                     <div class="top">
                         <div class="top_header">
                             <h2>여기톤 10조</h2>
-                            <img class="none" src="./static/assets/img/pin_bold.svg" alt="">
+                            <img class="pin_img none" src="./static/assets/img/pin_bold.svg" alt="">
                         </div>
                         <div class="profile_box">
                             <img src="./static/assets/img/profile.png" alt="profile" class="profile">
@@ -81,7 +81,7 @@
                     <div class="top">
                         <div class="top_header">
                             <h2>여기톤 10조</h2>
-                            <img class="none" src="./static/assets/img/pin_bold.svg" alt="">
+                            <img class="pin_img none" src="./static/assets/img/pin_bold.svg" alt="">
                         </div>
                         <div class="profile_box">
                             <img src="./static/assets/img/profile.png" alt="profile" class="profile">
@@ -108,6 +108,7 @@
     <script src="./static/js/chart.js"></script>
 
     <script>
+
         document.addEventListener('DOMContentLoaded', () => {
             fetch('./template/index_create.html')
                 .then(response => response.text())
@@ -117,6 +118,8 @@
                 })
                 .catch(error => console.error('Error loading index_create.html:', error));
         });
+
+
     </script>
 
     <script>
@@ -162,6 +165,16 @@
             window.addFriend = addFriend;
             window.teamName = teamName;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const pinImages = document.querySelectorAll('.pin_img');
+
+            pinImages.forEach(function(img) {
+                if (!img.classList.contains('none')) {
+                    img.closest('.box').classList.add('bordered');
+                }
+            });
+        });
     </script>
 
 </body>

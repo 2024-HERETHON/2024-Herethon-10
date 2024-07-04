@@ -78,10 +78,10 @@
 
 #main .box .top .top_header img {
     position: absolute;
-    width: 18px;
-    height: 18px;
-    right: 0;
-    top: -10px;
+    width: 16px;
+    height: 16px;
+    right: -2px;
+    top: -12px;
 }
 
 #main .box .top .profile_box {
@@ -362,6 +362,10 @@
 
 .list_wrap .list img {
     width: 24px;
+}
+
+.bordered {
+    border: 1px solid var(--black); /* Adjust border style as needed */
 }
 
 /* 미디어 쿼리 */
