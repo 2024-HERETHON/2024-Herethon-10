@@ -1,0 +1,145 @@
+/* header */
+
+.header .top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.header .top h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.header .top .backbtn {
+    left: 0;
+    position: absolute;
+}
+
+form {
+    padding: 0 8px;
+}
+
+.team_title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.team_title>label,
+.profile>label,
+.team_memeber>label {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.team_title>input {
+    box-shadow: 0px 0px 10px 0px #00000020;
+    border: 0;
+    padding: 15px;
+    height: 54px;
+    border-radius: 20px;
+}
+
+.main form .profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile>label {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.main form .profile .profileimg {
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+}
+
+.profile>img {
+    width: 111px;
+    height: 111px;
+}
+
+.profilebtn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.profilebtn {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.profilebtn-wrapper label {
+    position: absolute;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    top: 56px;
+    right: 0;
+    background-image: url('../../img/profilebtn.svg');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+
+.list_wrap {
+    height: 300px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.list_wrap::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+}
+
+.list_wrap::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.list_wrap::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
+}
+
+.list_wrap .list {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #d0d0d0;
+    color: #292929;
+    padding: 10px;
+}
+
+.list_wrap .list img {
+    width: 24px;
+}
+
+
+form>button {
+    position: absolute;
+    width: 100%;
+    max-width: 354px;
+    height: 55px;
+    background-color: var(--main);
+    color: var(--white);
+    border-radius: 20px;
+    bottom: 40px;
+    font-size: 20px;
+}
