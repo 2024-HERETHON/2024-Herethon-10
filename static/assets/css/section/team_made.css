@@ -19,6 +19,7 @@
 }
 
 form {
+    position: relative;
     padding: 0 8px;
 }
 
@@ -140,6 +141,6 @@ form>button {
     background-color: var(--main);
     color: var(--white);
     border-radius: 20px;
-    bottom: 40px;
+    bottom: -100px;
     font-size: 20px;
 }
