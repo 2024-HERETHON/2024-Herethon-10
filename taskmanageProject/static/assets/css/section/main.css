@@ -1,0 +1,369 @@
+.main_wrap {
+    position: relative;
+}
+
+#doughnut-chart {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+/* header */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px 40px 5px;
+}
+
+#header h1 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+#header div {
+    display: flex;
+}
+
+#header div .create {
+    padding: 8px;
+    border-radius: 50%;
+    border: 1px solid #99999960;
+    margin-right: 10px;
+}
+
+#header div .create img {
+    width: 28px;
+}
+
+#header div .profile {
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+    background-color: var(--black);
+}
+
+/* main */
+
+#main {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#main a {
+    width: 48%;
+}
+
+#main .box {
+    height: 285px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#main .box .top h2 {
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: -1.5px;
+    margin-top: 10px;
+}
+
+#main .box .top .profile_box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+#main .box .top .profile_box .profile {
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid #00000020;
+}
+
+.profile01 {
+    left: 0;
+    z-index: 1;
+    background-color: aqua;
+}
+
+.profile02 {
+    left: 23.5px;
+    z-index: 2;
+    background-color: lightcoral;
+}
+
+.profile03 {
+    left: 47px;
+    z-index: 3;
+    background-color: lightgreen;
+}
+
+.profile04 {
+    left: 70.5px;
+    z-index: 4;
+    background-color: lightyellow;
+}
+
+.profile05 {
+    left: 94px;
+    z-index: 5;
+    background-color: lightpink;
+}
+
+#main .box .middle {
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+#main .box .bottom {
+    color: #111111;
+    padding: 0 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* popup */
+
+.popup_wrap {
+    z-index: 10;
+    height: 83vh;
+    width: 100%;
+    background-color: #11111125;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_wrap .popup {
+    box-shadow: 0px 0px 10px 0px #00000045;
+    width: 288px;
+    height: 410px;
+    background-color: var(--white);
+    border-radius: 20px;
+    margin-bottom: 120px;
+    text-align: center;
+    padding: 20px;
+}
+
+.popup>img {
+    margin-top: 20px;
+    width: 234px;
+}
+
+.popup h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.popup p {
+    font-size: 18px;
+}
+
+.popup .btn_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup .btn_box>button {
+    margin-top: 60px;
+    font-size: 20px;
+    width: 50%;
+    font-weight: 500;
+}
+
+.popup .btn_box .craetebtn {
+    color: var(--main);
+    font-weight: 600;
+}
+
+.popup .second {
+    margin-top: 100px;
+}
+
+.popup .second h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.popup .second input {
+    width: 100%;
+    border: 0;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.popup .second .btn_box {
+    margin-top: 69px;
+}
+
+.popup .third h3 {
+    border-bottom: 1px solid #d0d0d0;
+    padding: 10px 0;
+}
+
+.popup .third .team_list {
+    height: 230px;
+    overflow-y: scroll;
+    overflow: auto;
+    padding: 10px;
+}
+
+.popup .third .team_list div {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.popup .third .team_list div img {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 3px;
+}
+
+.popup .third .btn_box button {
+    margin-top: 50px;
+}
+
+/* 스크롤바 */
+
+.team_list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.team_list::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.team_list::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
+}
+
+/* 팀원 추가하기 */
+
+.add_team {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 20;
+    background-color: var(--white);
+    width: 430px;
+    height: 480px;
+    transform: translateX(-50%) !important;
+    padding: 40px 30px 20px;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px -10px 14.5px 0px #00000025;
+}
+
+.search {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search input {
+    font-size: 18px;
+    width: 100%;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 0;
+}
+
+.search img {
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+}
+
+.plus_friend {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.plus_friend div {
+    background-color: #D9D9D9;
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: relative;
+    margin-right: 10px;
+    box-shadow: 0px 0px 10px 0px #00000010;
+}
+
+.plus_friend div p {
+    color: #555;
+}
+
+.plus_friend div button {
+    top: 0;
+    right: -8px;
+    position: absolute;
+}
+
+.list_wrap .list {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #d0d0d0;
+    color: #292929;
+    padding: 10px;
+}
+
+.list_wrap .list img {
+    width: 24px;
+}
+
+/* 미디어 쿼리 */
+
+@media(max-width:425px) {
+    #main .box .top .profile_box .profile {
+        width: 45px;
+        height: 45px;
+    }
+} 
+
+@media(max-width:415px) {
+    #main .box .top .profile_box .profile {
+        width: 42px;
+        height: 42px;
+    }
+} 
+
+@media(max-width:405px) {
+    #main .box .top .profile_box .profile {
+        width: 40px;
+        height: 40px;
+    }
+} 
+
+@media(max-width:395px) {
+    #main .box .top .profile_box .profile {
+        width: 38px;
+        height: 38px;
+    }
+} 
+
+@media(max-width:385px) {
+    #main .box .top .profile_box .profile {
+        width: 36px;
+        height: 36px;
+    }
+}

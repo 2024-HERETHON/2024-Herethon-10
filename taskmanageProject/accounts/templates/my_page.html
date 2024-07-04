@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+</head>
+<body>
+    <h2>마이페이지</h2>
+
+    <!-- 유저 프로필 정보 -->
+    프로필 사진: <img src="{{ user.profile.url }}" alt="Profile Picture" style="width: 100px; height: 100px";><br>
+    아아디: {{ user.username }}<br>
+    이름: {{ user.name }}
+
+    <hr>
+
+    <!-- 유저가 생성한 팀 리스트 -->
+    {% for team in user.created_teams.all %}
+        <li>
+            <!-- 팀 이미지 표시 -->
+            {% if team.photo %}
+                <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+            {% else %}
+                <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+            {% endif %}
+
+            <br>
+
+            <!-- 팀 상세페이지 이동 -->
+            <a href="{% url 'teams:team_detail' team.id %}">
+                <strong>팀 이름: {{ team.name }}</strong><br>
+            </a>
+            <br>
+            {{ team.created_at }} - {{ team.creator.username }} <br><br>
+        </li>
+    {% endfor %}
+
+    <!-- 유저가 맴버로 있는 팀 리스트 -->
+    {% for team in user.teams.all %}
+        {% if team.creator != user %}  <!-- 이미 생성한 팀은 위에서 이미 출력했으므로 제외 -->
+        <li>
+            <!-- 팀 이미지 표시 -->
+            {% if team.photo %}
+                <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+            {% else %}
+                <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+            {% endif %}
+
+            <br>
+
+            <!-- 팀 상세페이지 이동 -->
+            <a href="{% url 'teams:team_detail' team.id %}">
+                <strong>팀 이름: {{ team.name }}</strong><br>
+            </a>
+            <br>
+            {{ team.created_at }} - {{ team.creator.username }} <br><br>
+        </li>
+        {% endif %}
+    {% endfor %}
+
+    <!-- 팀 리스트로 이동 -->
+    <br><br><a href="{% url 'teams:team_list' %}">팀 리스트로 이동</a><br>
+</body>
+</html>

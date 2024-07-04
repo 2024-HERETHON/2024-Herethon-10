@@ -1,0 +1,120 @@
+/* login과 같은 디자인이 있어 일부 가져왔습니다. */
+/* 다른 페이지와 달리 공통 부분에 수정할 부분이 있어 추가합니다. */
+
+form {
+    padding: 10px;
+}
+
+form>.userPass {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+form>.userPassre {
+    position: relative;
+}
+
+.userPassre>div .box {
+    position: absolute;
+    bottom: 14px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.userPassre>div .box .delete {
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
+
+/* header */
+
+.header .top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.header .top h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.header .top .backbtn {
+    left: 0;
+    position: absolute;
+}
+
+.header .profile {
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header .profile .profileimg {
+    width: 110px;
+}
+
+.header .profile .profilebtn {
+    position: absolute;
+    width: 36px;
+    bottom: 0;
+    right: 130px;
+}
+
+.userBirth {
+    margin-bottom: 40px;
+}
+
+/* 체크박스 */
+
+.agree {
+    margin-bottom: 100px;
+}
+
+.checkbox-item {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: none;
+    width: 18px;
+    height: 18px;
+    min-width: 0;
+    padding: 0;
+}
+
+.checkbox-item .allAgree {
+    font-size: 20px;
+}
+
+.checkbox-item a {
+    margin-left: 15px;
+    color: var(--gray);
+    text-decoration: underline;
+}
+
+.check_alone {
+    margin-bottom: 3px;
+}
+
+.joinbtn {
+    position: fixed;
+    background-color: var(--main);
+    height: 70px;
+    width: 430px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0px -10px 14.5px 0px #00000025;
+    color: var(--white);
+    font-size: 20px;
+}
