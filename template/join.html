@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css -->
-    <!-- 기본 css  -->
     <link rel="stylesheet" href="../static/assets/css/fonts.css">
     <link rel="stylesheet" href="../static/assets/css/reset.css">
     <link rel="stylesheet" href="../static/assets/css/sytle.css">
-
-    <!-- main 페이지 css -->
     <link rel="stylesheet" href="../static/assets/css/section/login.css">
     <link rel="stylesheet" href="../static/assets/css/section/join.css">
     <title>기로프</title>
-
-    <title>기로프-회원가입</title>
 </head>
-
 <body>
     <div class="join_wrap container">
         <div class="header">
@@ -34,76 +27,143 @@
                 <img src="../static/assets/img/profilebtn.svg" alt="profilebtn" class="profilebtn">
             </div>
         </div>
+        <!-- form -->
         <form action="#" name="login">
+            <input type="hidden" name="profileImage" id="profileImage">
             <div class="userId">
-                <label>아이디 *</label>
-                <input type="text" id="userId" placeholder="아이디를 입력하세요.">
+                <label for="userId">아이디 *</label>
+                <div class="input-container">
+                    <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요.">
+                    <div class="box">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                    </div>
+                </div>
+                <small class="error" id="userIdError">아이디를 6자 이상 입력해주세요.</small>
             </div>
             <div class="userEmail">
-                <label>이메일 *</label>
-                <input type="text" id="userEmail" placeholder="예) rlfhvm@gmail.com">
+                <label for="userEmail">이메일 *</label>
+                <div class="input-container">
+                    <input type="text" id="userEmail" name="userEmail" placeholder="예) rlfhvm@gmail.com">
+                    <div class="box">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                    </div>
+                </div>
+                <small class="error" id="userEmailDuplicateError">이미 존재하는 이메일입니다.</small>
+                <small class="error" id="userEmailError">유효한 이메일을 입력해주세요.</small>
             </div>
             <div class="userPass">
-                <label>비밀번호 *</label>
-                <div>
-                    <input type="password" id="userPassword" placeholder="8자 이상">
+                <label for="userPassword">비밀번호 *</label>
+                <div class="input-container">
+                    <input type="password" id="userPassword" name="userPassword" placeholder="8자 이상">
                     <div class="box">
-                        <button type="button" onclick="togglePassword('userPassword', this)">
-                            <img src="../static/assets/img/password.svg" alt="password">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                        <button type="button" class="clear" onclick="clearInput('userPassword')">
+                            <img src="../static/assets/img/deletebtn.svg" name="delete" alt="delete">
+                        </button>
+                        <button type="button" class="toggle-password" onclick="togglePassword('userPassword', this)">
+                            <img src="../static/assets/img/passwordshow.svg" name="password" alt="show">
                         </button>
                     </div>
                 </div>
+                <small class="error" id="userPasswordError">비밀번호를 8자 이상 입력해주세요.</small>
             </div>
             <div class="userPassre">
-                <label>비밀번호 확인 *</label>
-                <div>
-                    <input type="password" id="userPasswordre" placeholder="비밀번호를 한 번 더 입력해주세요.">
+                <label for="userPasswordre">비밀번호 확인 *</label>
+                <div class="input-container">
+                    <input type="password" id="userPasswordre" name="userPasswordre" placeholder="비밀번호를 한 번 더 입력해주세요.">
                     <div class="box">
-                        <button><img class="delete" src="../static/assets/img/deletebtn.svg" alt="delete"></button>
-                        <button type="button" onclick="togglePassword('userPasswordre', this)">
-                            <img src="../static/assets/img/password.svg" alt="password">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                        <button type="button" class="clear" onclick="clearInput('userPasswordre')">
+                            <img src="../static/assets/img/deletebtn.svg" name="delete" alt="delete">
+                        </button>
+                        <button type="button" class="toggle-password" onclick="togglePassword('userPasswordre', this)">
+                            <img src="../static/assets/img/passwordshow.svg" name="password" alt="show">
                         </button>
                     </div>
                 </div>
+                <small class="error" id="userPasswordreEmptyError">비밀번호를 한 번 더 입력해주세요.</small>
+                <small class="error" id="userPasswordreError">비밀번호가 일치하지 않습니다.</small>
             </div>
             <div class="userName">
-                <label>이름 *</label>
-                <input type="text" id="userEmail" placeholder="예) 기로프">
+                <label for="userName">이름 *</label>
+                <div class="input-container">
+                    <input type="text" id="userName" name="userName" placeholder="예) 기로프">
+                    <div class="box">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                    </div>
+                </div>
+                <small class="error" id="userNameError">이름을 입력해주세요.</small>
             </div>
             <div class="userPhone">
-                <label>전화번호 *</label>
-                <input type="text" id="userEmail" placeholder="예) 01012345678">
+                <label for="userPhone">전화번호 *</label>
+                <div class="input-container">
+                    <input type="text" id="userPhone" name="userPhone" placeholder="예) 01012345678">
+                    <div class="box">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                    </div>
+                </div>
+                <small class="error" id="userPhoneError">‘-’를 제외한 전화번호를 입력해주세요.</small>
+                <small class="error" id="userPhoneDuplicateError">이미 존재하는 전화번호입니다.</small>
             </div>
             <div class="userBirth">
-                <label>생년월일</label>
-                <input type="text" id="userEmail" placeholder="예) 2000-01-01">
+                <label for="userBirth">생년월일</label>
+                <div class="input-container">
+                    <input type="text" id="userBirth" name="userBirth" placeholder="예) 2000-01-01">
+                    <div class="box">
+                        <img src="../static/assets/img/check.svg" class="checkmark" alt="check">
+                        <img src="../static/assets/img/wrong.svg" class="wrongmark" alt="wrong">
+                    </div>
+                </div>
+                <small class="error" id="userBirthError">유효한 생년월일을 입력해주세요. (예: 2000-01-01)</small>
             </div>
+
+            <!-- agree -->
             <div class="agree">
                 <div class="checkbox-item">
-                    <input type="checkbox" id="allAgree" class="join_check">
+                    <input type="checkbox" id="allAgree" name="allAgree" class="join_check">
                     <label for="allAgree" class="allAgree">아래 약관에 모두 동의합니다.</label>
                 </div>
                 <div class="checkbox-item check_alone">
-                    <input type="checkbox" id="termsAgree" class="join_check">
+                    <input type="checkbox" id="termsAgree" name="termsAgree" class="join_check">
                     <label for="termsAgree">이용약관 필수 동의</label>
                     <a href="#">자세히보기</a>
                 </div>
                 <div class="checkbox-item check_alone">
-                    <input type="checkbox" id="privacyAgree" class="join_check">
+                    <input type="checkbox" id="privacyAgree" name="privacyAgree" class="join_check">
                     <label for="privacyAgree">개인정보 처리방침 필수 동의</label>
                     <a href="#">자세히보기</a>
                 </div>
                 <div class="checkbox-item check_alone">
-                    <input type="checkbox" id="marketingAgree" class="join_check">
+                    <input type="checkbox" id="marketingAgree" name="marketingAgree" class="join_check">
                     <label for="marketingAgree">마케팅 정보 수신 선택 동의</label>
                     <a href="#">자세히보기</a>
                 </div>
             </div>
-            <button class="joinbtn">다음</button>
+            <button class="joinbtn joinbtn-disabled" type="submit">다음</button>
         </form>
     </div>
 
+    <!-- popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="popup-item">사진 촬영</div>
+            <div class="popup-line"></div>
+            <div class="popup-item" id="chooseImageBtn">사진 선택</div>
+            <div class="popup-line"></div>
+            <div class="popup-item" id="cancelBtn">취소</div>
+        </div>
+    </div>
+    
     <script src="../static/js/join.js"></script>
+    <script src="../static/js/popup.js" ></script>
+    <script src="../static/js/password.js"></script>
+    <script src="../static/js/imgupload.js"></script> 
 </body>
 
 </html>
