@@ -2,19 +2,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleButtons = document.querySelectorAll('.toggle-password');
 
     toggleButtons.forEach(button => {
-        const inputId = button.previousElementSibling.previousElementSibling.id;
-        button.innerHTML = '<img src="../static/assets/img/passwordshow.svg" alt="show">'; // 초기 상태 설정
-        button.addEventListener('click', function() {
-            togglePassword(inputId, button);
-        });
+        const input = button.parentElement.previousElementSibling;
+        
+        if (input && input.tagName === 'INPUT') {
+            button.innerHTML = '<img src="../static/assets/img/passwordshow.svg" alt="show">';
+            button.addEventListener('click', function() {
+                togglePassword(input, button);
+            });
+        } else {
+            console.error('No input found for the toggle button');
+        }
     });
 });
 
 // 비밀번호 보이기 가리기
-function togglePassword(inputId, button) {
-    const input = document.getElementById(inputId);
+function togglePassword(input, button) {
     const icon = button.querySelector('img');
-    
+
     if (input.type === "password") {
         input.type = "text";
         icon.src = "../static/assets/img/password.svg";
