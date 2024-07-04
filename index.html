@@ -133,18 +133,25 @@
             function showPop() {
                 console.log(Popup)
                 Popup.classList.remove('none');
+                First.classList.remove('none');
             }
 
             function noPop() {
                 Popup.classList.add('none');
+                Second.classList.add('none');
             }
 
             // gsap 기본 상태
             gsap.set(addTeam, { bottom: '-400px' });
 
             function addFriend() {
-                addTeam.classList.remove('none');
-                gsap.to('.add_team', { duration: 1, bottom: "0", ease: "power3.out" });
+                if(addTeam.classList[1] === 'none'){
+                    addTeam.classList.remove('none');
+                    gsap.to('.add_team', { duration: 1, bottom: "0", ease: "power3.out" });
+                } else {
+                    addTeam.classList.add('none');
+                    gsap.to('.add_team', { duration: 1, bottom: "-400", ease: "power3.out" });
+                }
             }
 
             function teamName() {

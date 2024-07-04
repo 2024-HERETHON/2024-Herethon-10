@@ -74,7 +74,8 @@
         <div class="todo">
             <div class="todo_header">
                 <h3>할일</h3>
-                <button class="modify" onclick="modifyTodo()"><img src="../static/assets/img/modify.svg" alt="modify"></button>
+                <button class="modify" onclick="modifyTodo()"><img src="../static/assets/img/modify.svg"
+                        alt="modify"></button>
             </div>
             <div class="todo_list">
                 <div class="nothing">
@@ -90,6 +91,7 @@
 
         <!-- 팀원 수정 -->
         <div class="add_team none">
+            <button class="down" onclick="findFriend();"><img src="../static/assets/img/down.svg" alt="down"></button>
             <div class="search">
                 <input type="text" placeholder="아이디로 검색하기">
                 <button><img src="../static/assets/img/search.svg" alt="search"></button>
@@ -120,10 +122,11 @@
 
         <!-- 할일 추가 및 수정 -->
         <div class="todo_modify none">
-            <div class="search">
+            <button class="down" onclick="modifyTodo()"><img src="../static/assets/img/down.svg" alt="down"></button>
+            <form action="" class="search">
                 <input type="text" placeholder="할 일을 입력해주세요.">
-                <button><img src="../static/assets/img/plus_samll.svg" alt="search"></button>
-            </div>
+                <button type="submit"><img src="../static/assets/img/plus_samll.svg" alt="search"></button>
+            </form>
             <div class="todo_modifylist">
                 <div class="modify_list">
                     <p>컷편집하기</p>

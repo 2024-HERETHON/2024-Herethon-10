@@ -5,7 +5,7 @@ new Chart(document.getElementById("doughnut-chart"), {
         datasets: [
             {
                 backgroundColor: ["var(--gray)", "var(--gray)", "var(--gray)", "var(--gray)", "#C22370"],
-                data: [10, 20, 10, 10, 50]
+                data: [1, 2, 1, 1, 5]
             }
         ]
     },

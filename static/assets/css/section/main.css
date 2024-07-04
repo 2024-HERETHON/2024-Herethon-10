@@ -207,7 +207,7 @@
 }
 
 .popup .second .btn_box {
-    margin-top: 69px;
+    margin-top: 59px;
 }
 
 .popup .third h3 {
@@ -266,7 +266,7 @@
     width: 430px;
     height: 480px;
     transform: translateX(-50%) !important;
-    padding: 40px 30px 20px;
+    padding: 20px 30px;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0px -10px 14.5px 0px #00000025;
 }
@@ -315,6 +315,27 @@
     top: 0;
     right: -8px;
     position: absolute;
+}
+
+.list_wrap {
+    height: 280px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.list_wrap::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+}
+
+.list_wrap::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.list_wrap::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
 }
 
 .list_wrap .list {
