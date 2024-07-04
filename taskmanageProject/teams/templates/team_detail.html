@@ -1,64 +1,147 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>팀 상세보기</title>
+
+    <!-- 차트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/sytle.css' %}">
+    
+
+    <!-- main 페이지 css -->
+    <link rel="stylesheet" href="{% static 'assets/css/section/team.css' %}">
+
+    <title>기로프-팀</title>
 </head>
+
 <body>
-   
-    <!-- 팀 내용 출력 -->
-    {% if team.photo %}
-        <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
-    {% else %}
-        <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
-    {% endif %}
-    <h1> 팀이름: {{team.name}} </h1>
-    <h3>팀 생성자 : {{team.creater}}</h3>
-    <p> 팀 설명: {{team.description}} </p>
-    <strong>멤버:</strong>
-    <ul>
-        {% for member in team.members.all %}
-            <li>{{ member.username }}</li>
-        {% endfor %}
-    </ul>
+    <div class="team_wrap container">
+        <div class="header">
+            <!-- 로그인 했을 때 -->
+            {% if user.is_authenticated %}
+                <form action="{% url 'teams:likes' team.id %}" method='POST'>
+                {% csrf_token %}
+                    {% if user in team.like_users.all %}
+                        좋아요누름<button class="pin"><img class="pinimg" src="{% static 'assets/img/pin.svg' %}" alt="pin"></button>
+                    {% else %}
+                        <button class="pin"><img class="pinimg" src="{% static 'assets/img/pin.svg' %}" alt="pin"></button>
+                    {% endif %}
+                </form>
+            <!-- 로그인 안 했을 때 -->
+            {%else %}
+                팀 고정은 로그인 후 사용해주세요.
+            {% endif %}
 
-    <!-- 좋아요 개수 -->
-    <p>Likes: {{ team.like_count }}</p>
+                <h2>{{ team.name }}</h2>
+            <a href="{% url 'teams:team_list' %}"><img class="ximg" src="{% static 'assets/img/ximg.svg' %}" alt="down_pop"></a>
+        </div>
+        <div class="team_member">
+            <div class="team_header">
+                <h3>팀원</h3>
+                <button class="modify" onclick="findFriend();"><img src="{% static 'assets/img/modify.svg' %}" alt="modify"></button>
+            </div>
+            <div class="team_list">
+                <!-- 팀원 목록 -->
+                {% for member in team.members.all %}
+                    <div class="profile">
+                        <div>
+                            <img src="{{ member.profile.url }}" alt="profile" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                            <p>{{ member.username }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="todo">
+            <div class="todo_header">
+                <h3>할일</h3>
+                <button class="modify" onclick="modifyTodo()"><img src="{% static 'assets/img/modify.svg' %}" alt="modify"></button>
+            </div>
+            <div class="todo_list" style="text-align: center;">
+                {% for task in tasks %}
+                    {{ task.title }}
+                    담당자:
+                    {% for user in task.manager.all %}
+                        {{ user.username }},
+                    {% endfor %}
 
-    <!-- 좋아요 기능 -->
-    <div>
-        {% if user.is_authenticated %}
-        <form action="{% url 'teams:likes' team.id %}" method='POST'>
-          {% csrf_token %}
-          {% if user in team.like_users.all %}
-          <button class="btn btn-link text-danger">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-              <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
-            </svg>
-          </button>
-          {% else %}
-          <button class="btn btn-link text-danger">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16">
-              <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
-            </svg>
-          </button>
-          {% endif %}
-        </form>
-        {%else %}
-            <h4>팀 좋아요는 로그인 후 사용해주세요</h4>
-        {% endif %}
+                    {% if request.user in team.members.all %}
+                    <a href="{% url 'teams:task_update' task.id %}">할일 수정하기</a>
+                    <a href="{% url 'teams:task_delete' task.id %}">할일 삭제하기</a>
+                    {% endif %}
+                    {% empty %}
+                    <div class="nothing">
+                        <img src="{% static 'assets/img/no_todo.png' %}" alt="bin">
+                        <p>아직 작성된 할 일이 없어요</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="graph">
+                <canvas id="doughnut-chart"></canvas>
+                <p>00%</p>
+            </div>
+        </div>
+
+        <!-- 팀원 수정 -->
+        <div class="add_team none">
+            <div class="search">
+                <input type="text" placeholder="아이디로 검색하기">
+                <button><img src="../static/assets/img/search.svg" alt="search"></button>
+            </div>
+            <div class="plus_friend">
+                <div>
+                    <p>person6</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete"></button>
+                </div>
+                <div>
+                    <p>person6</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete"></button>
+                </div>
+                <div>
+                    <p>person6</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete"></button>
+                </div>
+                <div>
+                    <p>person6</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete"></button>
+                </div>
+                <div>
+                    <p>person6</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 할일 추가 및 수정 -->
+        <div class="todo_modify none">
+            <div class="search">
+                <input type="text" placeholder="할 일을 입력해주세요.">
+                <button><img src="../static/assets/img/plus_samll.svg" alt="search"></button>
+            </div>
+            <div class="todo_modifylist">
+                <div class="modify_list">
+                    <p>컷편집하기</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete">
+                </div>
+                <div class="modify_list">
+                    <p>배경음악 서치, 다운로드</p>
+                    <button><img src="../static/assets/img/deletebtn_white.svg" alt="delete">
+                </div>
+            </div>
+        </div>
     </div>
 
-
-    <!-- 글 수정 / 삭제 -->
-    {% if request.user == team.creater %}
-    <a href="{% url 'teams:team_update' team.id %}">팀 수정하기</a><br>
-    <a href="{% url 'teams:team_delete' team.id %}">팀 삭제하기</a><br>
-    {% endif %}
-    <!--글 수정/삭제 여기까지-->
-    <a href="{% url 'teams:team_list' %}">팀 리스트</a><br>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+   
+    <script src="{% static 'js/team.js' %}"></script>
+    <script src=" {% static 'js/chart.js' %}"></script>
 </body>
+
 </html>

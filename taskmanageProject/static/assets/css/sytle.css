@@ -1,0 +1,62 @@
+:root {
+    --main: #C22370;
+
+    --black: #222;
+    --gray: #999999;
+    --white: #fefefe;
+
+    --mainfont: 'Pretendard-Regular';
+    letter-spacing: -1.5px;
+}
+
+body {
+    font-family: var(--mainfont);
+    background-color: var(--black);
+}
+
+.container {
+    margin: 0 auto;
+    overflow-y: scroll;
+    overflow: auto;
+    height: 100vh;
+    min-height: 890px;
+    background-color: var(--white);
+    width: 430px;
+    padding: 70px 30px 0;
+}
+
+/* 스크롤바 */
+
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+.none {
+    display: none !important;
+}
+
+input {
+    outline: none;
+}
+
+@media(max-width:429px) {
+    .container {
+        width: 100%;
+        min-width: 380px;
+    }
+}

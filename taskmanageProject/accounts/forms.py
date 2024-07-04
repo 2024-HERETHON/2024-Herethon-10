@@ -9,6 +9,32 @@ class CustomUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['profile', 'username', 'password', 'email', 'name', 'phone', 'birthdate']
+
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'placeholder': '아이디를 6자 이상 입력해주세요.',
+            }),
+            'email': forms.TextInput(attrs={
+                'placeholder': '예) rlfhvm@gmail.com',
+            }),
+            'password': forms.TextInput(attrs={
+                'placeholder': '비밀번호를 8자 이상 입력해주세요.',
+            }),
+            'name': forms.TextInput(attrs={
+                'placeholder': '예) 기로프',
+            }),
+            'phone': forms.TextInput(attrs={
+                'placeholder': '예) 01012345678',
+            }),
+            'birthdate': forms.TextInput(attrs={
+                'placeholder': '예) 2000-01-01',
+            }),
+            'profile': forms.FileInput(attrs={
+                'class': 'profileimg',
+                'id': 'profile-input',
+                'style': 'display:none;'
+            }),
+        }
     
     def save(self, commit=True):
         user = super().save(commit=False)

@@ -1,0 +1,248 @@
+/* header  */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.header img {
+    width: 25px;
+}
+
+.header .pinimg {
+    margin-left: 10px;
+}
+
+.header .ximg {
+    width: 20px;
+}
+
+.header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+.header a {
+    display: flex;
+}
+
+/* member */
+
+.team_member {
+}
+
+.team_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.team_header h3 {
+    padding: 15px 10px;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.team_header img {
+    width: 24px;
+}
+
+.team_list {
+    width: 380px;
+    overflow: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+.team_list::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+}
+
+.team_list::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.team_list::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
+}
+
+.team_list>div {
+    display: inline-block;
+}
+
+.team_list>div>div {
+    width: 103px;
+    height: 112px;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    border-radius: 20px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.team_list>div img {
+    width: 47px;
+    height: 47px;
+    margin-bottom: 10px;
+}
+
+.todo_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo_header h3 {
+    padding: 30px 10px 15px;
+    font-size: 24px;
+}
+
+.todo_header img {
+    width: 25px;
+    height: 25px;
+}
+
+.todo_list {
+    box-shadow: 0px 0px 10px 0px #00000019;
+    height: 156px;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.todo_list .nothing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo_list .nothing img {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 10px;
+}
+
+.todo_list .nothing p {
+    font-size: 18px;
+}
+
+.graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.graph #doughnut-chart {
+    width: 180px !important;
+    height: 180px !important;
+    margin-bottom: 20px;
+}
+
+.graph p {
+    font-size: 20px;
+    color: #555;
+}
+
+/* 팀원 추가하기 */
+
+.add_team {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 20;
+    background-color: var(--white);
+    width: 430px;
+    height: 580px;
+    transform: translateX(-50%);
+    padding: 40px 30px 20px;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px -10px 14.5px 0px #00000025;
+}
+
+.search {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search input {
+    font-size: 18px;
+    width: 100%;
+    box-shadow: 0px 0px 10px 0px #00000019;
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 0;
+}
+
+.search img {
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+    right: 15px;
+    top: 18px;
+}
+
+.plus_friend {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.plus_friend div {
+    background-color: #D9D9D9;
+    padding: 5px 15px;
+    border-radius: 20px;
+    position: relative;
+    margin-right: 20px;
+    box-shadow: 0px 0px 10px 0px #00000010;
+    margin-bottom: 10px;
+}
+
+.plus_friend div p {
+    color: #555;
+}
+
+.plus_friend div button {
+    top: 0;
+    right: -8px;
+    position: absolute;
+}
+
+/* todo_modify */
+
+.todo_modify {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 20;
+    background-color: var(--white);
+    width: 430px;
+    height: 580px;
+    transform: translateX(-50%);
+    padding: 40px 30px 20px;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 0px -10px 14.5px 0px #00000025;
+}
+
+.todo_modifylist>div {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.todo_modifylist>div p {
+    color: #555;
+    font-size: 20px;
+}
+
+.todo_modifylist>div img {
+    width: 28px;
+    height: 28px;
+}
