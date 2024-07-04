@@ -1,0 +1,81 @@
+.header .top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.header .top h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.header .top .backbtn {
+    left: 0;
+    position: absolute;
+}
+
+
+/* 팀원 추가하기 */
+
+.plus_friend {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.plus_friend div {
+    background-color: #D9D9D9;
+    padding: 10px 15px;
+    border-radius: 20px;
+    position: relative;
+    margin-right: 20px;
+    box-shadow: 0px 0px 10px 0px #00000010;
+    margin-bottom: 10px;
+}
+
+.plus_friend div p {
+    color: #555;
+}
+
+.plus_friend div button {
+    top: 0;
+    right: -5px;
+    position: absolute;
+}
+
+.list_wrap {
+    height: 650px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.list_wrap::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+}
+
+.list_wrap::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: var(--main);
+    border-radius: 10px;
+}
+
+.list_wrap::-webkit-scrollbar-track {
+    background: rgba(167, 162, 162, 0.1);
+}
+
+.list_wrap .list {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #d0d0d0;
+    color: #292929;
+    padding: 10px;
+}
+
+.list_wrap .list img {
+    width: 24px;
+}

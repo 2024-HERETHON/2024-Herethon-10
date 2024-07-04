@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="../../static/assets/css/fonts.css">
+    <link rel="stylesheet" href="../../static/assets/css/reset.css">
+    <link rel="stylesheet" href="../../static/assets/css/sytle.css">
+
+    <!-- main 페이지 css -->
+    <link rel="stylesheet" href="../../static/assets/css/section/team_todo.css">
+
+    <title>기로프-할 일 수정</title>
+</head>
+
+<body>
+    <div class="team_todowrap container">
+        <div class="header">
+            <div class="top">
+                <button class="backbtn">
+                    <a href="./team.html">
+                        <img src="../../static/assets/img/back.svg" alt="backbtn">
+                    </a>
+                </button>
+                <h1>할 일</h1>
+            </div>
+        </div>
+        <div class="main">
+            <form action="/">
+                <div class="title_box">
+                    <label for="title">제목</label>
+                    <input type="text" placeholder="컷 편집하기">
+                </div>
+                <div class="pick_human">
+                    <label for="person100" class="human">담당자</label><br>
+                    <input type="checkbox" id="person100" name="person100">
+                    <label for="person100">person100</label><br>
+                    <input type="checkbox" id="person11" name="person11">
+                    <label for="person11">person11</label><br>
+                </div>
+                <div class="check_ok">
+                    <label for="success">완료 여부</label>
+                    <input type="checkbox" id="success">
+                </div>
+                <button type="submit">저장</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
