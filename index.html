@@ -35,13 +35,12 @@
             <a href="./template/team.html">
                 <div class="box">
                     <div class="top">
-                        <h2>여기톤 10조</h2>
+                        <div class="top_header">
+                            <h2>여기톤 10조</h2>
+                            <img src="./static/assets/img/pin_bold.svg" alt="">
+                        </div>
                         <div class="profile_box">
-                            <div class="profile profile01"></div>
-                            <div class="profile profile02"></div>
-                            <div class="profile profile03"></div>
-                            <div class="profile profile04"></div>
-                            <div class="profile profile05"></div>
+                            <img src="./static/assets/img/profile.png" alt="profile" class="profile">
                         </div>
                     </div>
                     <div class="middle">
@@ -58,13 +57,12 @@
             <a href="">
                 <div class="box">
                     <div class="top">
-                        <h2>여기톤 10조</h2>
+                        <div class="top_header">
+                            <h2>여기톤 10조</h2>
+                            <img class="none" src="./static/assets/img/pin_bold.svg" alt="">
+                        </div>
                         <div class="profile_box">
-                            <div class="profile profile01"></div>
-                            <div class="profile profile02"></div>
-                            <div class="profile profile03"></div>
-                            <div class="profile profile04"></div>
-                            <div class="profile profile05"></div>
+                            <img src="./static/assets/img/profile.png" alt="profile" class="profile">
                         </div>
                     </div>
                     <div class="middle">
@@ -81,13 +79,12 @@
             <a href="">
                 <div class="box">
                     <div class="top">
-                        <h2>여기톤 10조</h2>
+                        <div class="top_header">
+                            <h2>여기톤 10조</h2>
+                            <img class="none" src="./static/assets/img/pin_bold.svg" alt="">
+                        </div>
                         <div class="profile_box">
-                            <div class="profile profile01"></div>
-                            <div class="profile profile02"></div>
-                            <div class="profile profile03"></div>
-                            <div class="profile profile04"></div>
-                            <div class="profile profile05"></div>
+                            <img src="./static/assets/img/profile.png" alt="profile" class="profile">
                         </div>
                     </div>
                     <div class="middle">
@@ -145,7 +142,7 @@
             gsap.set(addTeam, { bottom: '-400px' });
 
             function addFriend() {
-                if(addTeam.classList[1] === 'none'){
+                if (addTeam.classList[1] === 'none') {
                     addTeam.classList.remove('none');
                     gsap.to('.add_team', { duration: 1, bottom: "0", ease: "power3.out" });
                 } else {

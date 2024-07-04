@@ -65,11 +65,23 @@
     justify-content: space-between;
 }
 
-#main .box .top h2 {
+#main .box .top .top_header {
+    position: relative;
+}
+
+#main .box .top .top_header h2 {
     text-align: center;
     font-size: 20px;
     letter-spacing: -1.5px;
     margin-top: 10px;
+}
+
+#main .box .top .top_header img {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    right: 0;
+    top: -10px;
 }
 
 #main .box .top .profile_box {
