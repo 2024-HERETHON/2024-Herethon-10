@@ -8,20 +8,32 @@
     <link rel="stylesheet" href="../static/assets/css/reset.css">
     <link rel="stylesheet" href="../static/assets/css/sytle.css">
     <link rel="stylesheet" href="../static/assets/css/section/join.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="../static/assets/css/section/joinclear.css">
     <title>기로프</title>
 </head>
     <body>
         <div class="join_wrap container">
             <div class="header">
                 <div class="top">
-                    <button class="backbtn">
-                        <a href="/">
-                            <img src="../static/assets/img/back.svg" alt="backbtn">
-                        </a>
-                    </button>
                     <h1>회원가입</h1>
                 </div>
             </div>
-        </div>
+            <div class="clear">
+                <div class="text-box">
+                    <h2>회원가입 완료</h2>
+                    <div class="text">
+                        <h4><span class="grf">기로프</span>와 함께<br>할 일을 효율적으로 관리하고 분배할<br>홍길동님을 응원합니다!</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="lottie-container" id="lottie">
+                <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+                <dotlottie-player src="https://lottie.host/1709475d-5814-4e94-b051-b69e37da223a/nrPZlpcBd7.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop="false;" autoplay></dotlottie-player>
+            </div>
+            <div class="btn-container">
+                <a href="../index.html" class="joinClear gohome">홈으로</a>
+                <a href="../template/login.html" class="joinClear gologin">로그인 하러 가기</a>
+            </div>
     </body>
 </html>
