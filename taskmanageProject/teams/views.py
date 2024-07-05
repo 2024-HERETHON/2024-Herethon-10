@@ -63,7 +63,7 @@ def team_update(request, id):
                 user = User.objects.get(pk=member_id)
                 unfinished_team.members.add(user)
             
-            return redirect('teams:team_list',  id=request.user.id)
+            return redirect('teams:team_list')
     else:
         form = TeamModelForm(instance=team, current_user=request.user)
         return render(request, 'team_member.html', {'form':form, 'id':id, 'team':team})
