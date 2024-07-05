@@ -124,7 +124,7 @@ function validate() {
 }
 
 // 폼 제출 이벤트 리스너
-document.forms['login'].addEventListener('submit', function(event) {
+document.forms['join'].addEventListener('submit', function(event) {
     if (!validate()) {
         event.preventDefault();
     }
