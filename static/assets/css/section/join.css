@@ -139,10 +139,11 @@ input.valid ~ .checkmark {
     font-size: 20px;
 }
 
-.checkbox-item a {
+.checkbox-item button {
     margin-left: 15px;
     color: var(--gray);
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .check_alone {
