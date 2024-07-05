@@ -19,8 +19,7 @@ body {
     overflow-y: scroll;
     overflow: auto;
     height: 100vh;
-    min-height: 900px;
-    min-height: 890px;
+    min-height: 870px;
     background-color: var(--white);
     width: 430px;
     padding: 70px 30px 0;

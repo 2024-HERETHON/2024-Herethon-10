@@ -103,68 +103,8 @@
 
     <!-- script -->
     <!-- gsap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="./static/js/chart.js"></script>
-
     <script>
-
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('./template/index_create.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('index-create-container').innerHTML = data;
-                    initializeMainJS();
-                })
-                .catch(error => console.error('Error loading index_create.html:', error));
-        });
-
-
-    </script>
-
-    <script>
-        function initializeMainJS() {
-            const Popup = document.querySelector('.popup_wrap');
-            const No = document.querySelector('.no');
-            const addTeam = document.querySelector('.add_team');
-            const First = document.querySelector('.first');
-            const Second = document.querySelector('.second');
-
-            function showPop() {
-                console.log(Popup)
-                Popup.classList.remove('none');
-                First.classList.remove('none');
-            }
-
-            function noPop() {
-                Popup.classList.add('none');
-                Second.classList.add('none');
-            }
-
-            // gsap 기본 상태
-            gsap.set(addTeam, { bottom: '-400px' });
-
-            function addFriend() {
-                if (addTeam.classList[1] === 'none') {
-                    addTeam.classList.remove('none');
-                    gsap.to('.add_team', { duration: 1, bottom: "0", ease: "power3.out" });
-                } else {
-                    addTeam.classList.add('none');
-                    gsap.to('.add_team', { duration: 1, bottom: "-400", ease: "power3.out" });
-                }
-            }
-
-            function teamName() {
-                console.log(First.classList)
-                First.classList.add('none');
-                Second.classList.remove('none');
-            }
-
-            window.showPop = showPop;
-            window.noPop = noPop;
-            window.addFriend = addFriend;
-            window.teamName = teamName;
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             const pinImages = document.querySelectorAll('.pin_img');
 

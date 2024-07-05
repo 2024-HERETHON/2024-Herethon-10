@@ -117,4 +117,6 @@ form>button {
     height: 55px;
     background-color: var(--main);
     color: var(--white);
+    border-radius: 20px;
+    margin: 40px 0;
 }

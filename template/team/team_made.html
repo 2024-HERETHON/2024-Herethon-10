@@ -31,7 +31,7 @@
             <form action="">
                 <div class="team_title">
                     <label for="title">팀 이름</label>
-                    <input type="text" placeholder="Unititeld">
+                    <input type="text" class="title_input" placeholder="Unititeld">
                 </div>
                 <div class="profile">
                     <label for="team_img">팀 이미지</label>
@@ -84,10 +84,23 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit">생성</button>
+                <button type="submit" class="submit_btn">생성</button>
             </form>
         </div>
     </div>
+
+    <script>
+        const TeamName = document.querySelector('.title_input');
+        const SubmitBtn = document.querySelector('.submit_btn');
+
+        TeamName.addEventListener('input', () => {
+            if(TeamName.value !== ''){
+                SubmitBtn.classList.add('full');
+            } else {
+                SubmitBtn.classList.remove('full');
+            }
+        })
+    </script>
     <script src="../../static/js/userinfo_modify.js"></script>
 
 </body>

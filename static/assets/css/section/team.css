@@ -28,8 +28,7 @@
 }
 
 /* member */
-.team_member {
-}
+.team_member {}
 
 .team_header {
     display: flex;
@@ -98,7 +97,7 @@
 .todo_header {
     display: flex;
     justify-content: space-between;
-    padding: 30px 10px 20px;
+    padding: 30px 0px 20px 10px;
 }
 
 .todo_header h3 {
@@ -153,7 +152,7 @@
 .todo_list>div .box {
     display: flex;
     align-items: center;
-    
+
 }
 
 .todo_list>div .box .modify {
@@ -185,6 +184,7 @@
     font-size: 20px;
     color: #555;
 }
+
 /* todo_modify */
 
 .todo_modify {

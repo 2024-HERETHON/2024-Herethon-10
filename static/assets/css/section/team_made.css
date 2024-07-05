@@ -132,15 +132,18 @@ form {
     width: 24px;
 }
 
-
 form>button {
     position: absolute;
     width: 100%;
     max-width: 354px;
     height: 55px;
-    background-color: var(--main);
+    background-color: var(--gray);
     color: var(--white);
     border-radius: 20px;
-    bottom: -100px;
+    bottom: -80px;
     font-size: 20px;
+}
+
+form>button.full {
+    background-color: var(--main);
 }
