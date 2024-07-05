@@ -22,7 +22,6 @@
   
   |송은지|강주은|정새영|이정은|장하연|
   |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
-  |<img width="80%" src="https://github.com/hyjang14/2024-Herethon-backend/assets/126192446/0c61cce5-7534-43a9-877e-bf7febd1e030"/>|<img width="80%" src="https://github.com/hyjang14/2024-Herethon-backend/assets/126192446/f43656f4-1f4a-4c25-80ff-8eee7405f2be"/>|<img width="80%" src="https://github.com/hyjang14/2024-Herethon-backend/assets/126192446/3cee2c61-982f-45cf-9259-5f965c2d127e"/>|<img width="80%" src="https://github.com/hyjang14/2024-Herethon-backend/assets/126192446/1a93cd52-26aa-4f6a-9acb-109920458dbd"/>|<img width="80%" src="https://github.com/hyjang14/2024-Herethon-backend/assets/126192446/d56f17ef-3f14-4bb9-adad-be25d4f17f6b"/>|
   |<b>기획·디자인|<b>프론트엔드|<b>프론트엔드|<b>백엔드|<b>백엔드|
   |서비스 디자인|회원가입·로그인 퍼블리싱|팀 퍼블리싱|회원가입·로그인 구현|할일 CRUD 구현|
   |PPT 디자인|약관동의 퍼블리싱|그래프 퍼블리싱|팀 CRUD 구현|그래프 기능 구현|
