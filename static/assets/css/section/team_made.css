@@ -45,9 +45,11 @@ form {
     border-radius: 20px;
 }
 
+/* css 수정 */
+
 .main form .profile {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .profile>label {
@@ -56,26 +58,11 @@ form {
     font-size: 20px;
 }
 
-.main form .profile .profileimg {
-    border-radius: 50%;
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-}
-
-.profile>img {
-    width: 111px;
-    height: 111px;
-}
-
 .profilebtn-wrapper {
-    position: relative;
-    display: inline-block;
+    width: 100%;
 }
 
 .profilebtn {
-    width: 100%;
-    height: 100%;
     opacity: 0;
     position: absolute;
     left: 0;
@@ -84,20 +71,20 @@ form {
 }
 
 .profilebtn-wrapper label {
-    position: absolute;
-    display: inline-block;
-    width: 36px;
-    height: 36px;
+    width: 100%;
+    font-size: 18px;
+    height: 55px;
     top: 56px;
-    right: 0;
-    background-image: url('../../img/profilebtn.svg');
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .list_wrap {
+    margin-top: 10px;
     height: 300px;
     overflow: auto;
     white-space: nowrap;
@@ -140,7 +127,7 @@ form>button {
     background-color: var(--gray);
     color: var(--white);
     border-radius: 20px;
-    bottom: -80px;
+    bottom: -100px;
     font-size: 20px;
 }
 
