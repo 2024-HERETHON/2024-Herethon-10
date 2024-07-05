@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 리스트</title>
+</head>
+<body>
+    <h1>팀 리스트</h1>
+    
+    <div>
+        <h2><유저가 좋아요 한 팀들></h2>
+        <ul>
+            {% for team in liked_teams %}
+                <li>
+                    {% if team.photo %}
+                        <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% else %}
+                        <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% endif %}
+                        
+                    <br>
+                    
+                    <a href="{% url 'teams:team_detail' team.id %}">
+                    <strong>팀 이름: {{ team.name }}</strong><br></a>
+                    <p>팀 생성일: {{ team.created_at }}</p>
+                    팀 생성자 : {{ team.creater }}<br>
+                    팀 설명: {{ team.description }}<br><br>
+                    <strong>멤버:</strong>
+                    <ul>
+                        {% for member in team.members.all %}
+                            <li>{{ member.username }}</li>
+                        {% endfor %}
+                    </ul>
+                </li><hr>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h2><유저가 좋아요 안 한 팀들></h2>
+        <ul>
+            {% for team in other_teams %}
+                <li>
+                    {% if team.photo %}
+                        <img src="{{ team.photo.url }}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% else %}
+                        <img src="{% static '../media/team_photo/default_photo.jpg' %}" alt="Team Picture" style="width: 100px; height: 100px">
+                    {% endif %}
+                        
+                    <br>
+                    
+                    <a href="{% url 'teams:team_detail' team.id %}">
+                    <strong>팀 이름: {{ team.name }}</strong><br></a>
+                    <p>팀 생성일: {{ team.created_at }}</p>
+                    팀 생성자 : {{ team.creater }}<br>
+                    팀 설명: {{ team.description }}<br><br>
+                    <strong>멤버:</strong>
+                    <ul>
+                        {% for member in team.members.all %}
+                            <li>{{ member.username }}</li>
+                        {% endfor %}
+                    </ul>
+                </li><hr>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <br>
+    <!-- 회원가입 / 로그인 -->
+    {% if user.is_authenticated %} <!--로그인시-->
+    <a href="{% url 'teams:team_create' %}">새 팀 생성</a><br>
+    <a href="{% url 'accounts:user_update' user.id %}">회원 정보 수정</a><br>
+    <a href="{% url 'accounts:my_page' user.id %}">마이페이지</a></div><br>
+    {% endif %}
+     <!--회원가입 / 로그인 끝-->
+     
+     <br>
+     <a href="{% url 'accounts:base' %}">메인페이지</a><br>
+</body>
+</html>

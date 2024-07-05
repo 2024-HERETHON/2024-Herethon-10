@@ -1,0 +1,66 @@
+{% load static %}
+
+<!-- 팀 할일 생성 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/sytle.css' %}">
+
+    <!-- main 페이지 css -->
+    <link rel="stylesheet" href="{% static 'assets/css/section/team_todo.css' %}">
+
+    <title>기로프-할 일 생성</title>
+</head>
+
+<body>
+    <div class="team_todowrap container">
+        <div class="header">
+            <div class="top">
+                <button class="backbtn">
+                    <a href="{% url 'teams:team_detail' team.id %}">
+                        <img src="{% static 'assets/img/back.svg' %}" alt="backbtn">
+                    </a>
+                </button>
+                {% if not form.title.value %}
+                    <h1>할 일</h1>
+                {% else %}
+                    <h1>할 일 수정</h1>
+                {% endif %}
+              
+                
+            </div>
+        </div>
+        <div class="main">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="title_box">
+                    <label for="title">제목</label>
+                    {{ form.title }}
+                </div>
+                <div class="pick_human">
+                    <label for="manager" class="human">담당자</label><br>
+                    {% if form.manager.errors %}
+                    <p style="color: palevioletred; text-align: center;">{{ form.manager.errors.1 }}</p> 
+                    {% endif %}
+                    {{ form.manager }}
+                </div>
+                <div class="check_ok">
+                    <label for="success">완료 여부</label>
+                    {{ form.finished }}
+                </div>
+                <button type="submit">저장</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+</html>

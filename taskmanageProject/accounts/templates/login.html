@@ -1,0 +1,134 @@
+{% load static %}
+
+<!-- 로그인 페이지  -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/sytle.css' %}">
+
+
+    <!-- main 페이지 css -->
+    <link rel="stylesheet" href="{% static 'assets/css/section/login.css' %}">
+
+
+    <title>기로프-로그인</title>
+
+</head>
+
+<body>
+    <div class="login_wrap container">
+        <a href="{% url 'teams:team_list' %}">
+            <h1>기로프</h1>
+        </a>
+        <!-- 유저 정보가 없을시, 에러 메시지 출력 -->
+        {% if error_message %}
+        <p style="color: palevioletred; text-align: center;">{{ error_message }}</p>
+        {% endif %}
+
+        <form action="" name="login" class="user" method="POST">
+            {% csrf_token %}
+            <div class="userId">
+                <label>아이디</label>
+                <input type="text" id="userId" class="userIdinput" name="username" placeholder="아이디를 입력하세요.">
+            </div>
+            <div class="userPass">
+                <label>비밀번호</label>
+                <div>
+                    <input type="password" id="userPassword" class="userInputpassword" name="password"
+                        placeholder="비밀번호를 입력하세요.">
+                    <div class="box">
+                        <button type="button" class="clear" onclick="clearInput('userPassword')">
+                            <img class="delete" src="{% static 'assets/img/deletebtn.svg' %}" name="delete"
+                                alt="delete">
+                        </button>
+                        <button type="button" class="toggle-password" onclick="togglePassword('userPassword', this)">
+                            <img src="{% static 'assets/img/password.svg' %}" name="password" alt="show">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button class="login_btn">로그인</button>
+        </form>
+        <div class="link">
+            <a href="{% url 'accounts:signup' %}">회원가입</a>
+            <div></div>
+            <a href="{% url 'password_reset' %}">비밀번호 찾기</a>
+        </div>
+    </div>
+    <script src="{% static 'js/join.js' %}?after"></script>
+    <script>
+        const userIdinput = document.querySelector('.userIdinput');
+        const userInputpassword = document.querySelector('.userInputpassword');
+        const loginBtn = document.querySelector('.login_btn');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const userIdinput = document.querySelector('.userIdinput');
+            const userInputpassword = document.querySelector('.userInputpassword');
+
+            function checkFields() {
+                // 각 입력 필드의 값이 비어 있는지 확인
+                const useridFilled = userIdinput.value.trim() !== '';
+                const passwordFilled = userInputpassword.value.trim() !== '';
+
+                if (useridFilled && passwordFilled) {
+                    loginBtn.classList.add('full');
+                } else {
+                    loginBtn.classList.remove('full');
+                }
+            }
+
+            userIdinput.addEventListener('input', checkFields);
+            userInputpassword.addEventListener('input', checkFields);
+            checkFields();
+        });
+
+        // 비밀번호 보이기 가리기
+        function togglePassword(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('img');
+            const staticUrl = "{% static 'assets/img/' %}";
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.src = staticUrl + "passwordshow.svg";
+                icon.alt = "hide";
+            } else {
+                input.type = "password";
+                icon.src = staticUrl + "password.svg";
+                icon.alt = "show";
+            }
+        }
+
+        function clearInput(inputId) {
+            const input = document.getElementById(inputId);
+            input.value = '';
+            input.classList.remove('error-border', 'valid');
+            const errorElement = document.getElementById(inputId + 'Error');
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+            const duplicateErrorElement = document.getElementById(inputId + 'DuplicateError');
+            if (duplicateErrorElement) {
+                duplicateErrorElement.style.display = 'none';
+            }
+            const checkmark = input.parentNode.querySelector('.checkmark');
+            const wrongmark = input.parentNode.querySelector('.wrongmark');
+            if (checkmark) {
+                checkmark.style.display = 'none';
+            }
+            if (wrongmark) {
+                wrongmark.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

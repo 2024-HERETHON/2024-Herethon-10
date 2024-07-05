@@ -1,0 +1,123 @@
+/* header */
+
+.header .top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.header .top h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.header .top .backbtn {
+    left: 0;
+    position: absolute;
+}
+
+/* css 수정 */
+
+.main form .profile {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile>label {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.profilebtn-wrapper {
+    width: 100%;
+}
+
+.profilebtn {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.profilebtn-wrapper label {
+    width: 100%;
+    font-size: 18px;
+    height: 55px;
+    top: 56px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    padding: 0px 4px;
+}
+
+form>div {
+    margin-bottom: 15px;
+}
+
+form>div>label {
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+form>div>input,
+form>div>div>input {
+    font-size: 16px;
+    box-shadow: 0px 0px 10px 0px #00000010;
+    border-radius: 20px;
+    padding: 15px 20px;
+    outline: none;
+    width: 100%;
+    min-width: 306px;
+    border: 1px solid #000;
+}
+
+form>.userPass {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+form>.userPassre,
+form>.userPass {
+    position: relative;
+}
+
+.userPassre>div .box,
+.userPass>div .box {
+    position: absolute;
+    bottom: 14px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.userPassre>div .box .delete, 
+.userPass>div .box .delete {
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
+
+form>button {
+    width: 100%;
+    height: 55px;
+    background-color: var(--main);
+    color: var(--white);
+    border-radius: 20px;
+    margin: 40px 0;
+}
+
+form>button.bin {
+    background-color: var(--gray);
+}

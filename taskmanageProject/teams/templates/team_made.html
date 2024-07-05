@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css -->
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/sytle.css' %}">
+
+    <!-- main 페이지 css --> 
+    <link rel="stylesheet" href="{% static 'assets/css/section/team_made.css' %}?after">
+
+    <title>기로프-팀만들기</title>
+    <style>
+        /* 파일 입력 필드 숨기기 */
+        .hidden-file-input {
+            display: none;
+        }
+        /* 프로필 버튼 스타일 */
+        .profilebtn-wrapper {
+            cursor: pointer;
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+        /* 레이블 스타일 */
+        .profilebtn-label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="team_made container">
+        <div class="header">
+            <div class="top">
+                <button class="backbtn">
+                    <a href="{% url 'teams:team_list' %}">
+                        <img src="{% static 'assets/img/back.svg' %}" alt="backbtn">
+                    </a>
+                </button>
+                {% if not form.name.value %}
+                    <h1>팀 생성</h1>
+                {% else %}
+                    <h1>팀 수정</h1>
+                {% endif %}
+                
+            </div>
+        </div>
+        <div class="main">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="team_title">
+                    <label for="title">팀 이름</label>
+                    {{ form.name }}
+                    <!-- <input type="text" placeholder="Unititeld"> -->
+                </div>
+                <div class="profile">
+                    <label for="team_img">팀 이미지</label>
+                    <div class="profilebtn-wrapper">
+                        <label for="id_photo" class="profilebtn-label">
+                            사진 추가
+                        </label>
+                        <!-- Django 폼 필드 (파일 입력 필드를 숨김) -->
+                        {{ form.photo }}
+                    </div>
+                </div>
+                <div class="team_memeber">
+                    <label for="member">팀원</label>
+                    <div class="list_wrap">
+                        <div class="list">
+                            {{ form.members }}
+                            <!-- <p>admin</p>
+                            <button type="button"><img src="../../static/assets/img/profilebtn.svg" alt=""></button> -->
+                        </div>
+                        
+                    </div>
+                </div>
+                {% if not form.name.value %}
+                    <button type="submit" class="submit_btn">생성</button>
+                {% else %}
+                    <button type="submit" class="submit_btn">수정</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <script>
+        const TeamName = document.querySelector('.title_input');
+        const SubmitBtn = document.querySelector('.submit_btn');
+
+        TeamName.addEventListener('input', () => {
+            if(TeamName.value !== ''){
+                SubmitBtn.classList.add('full');
+            } else {
+                SubmitBtn.classList.remove('full');
+            }
+        })
+    </script>
+    <script src="{% static 'js/userinfo_modify.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% load static %}
+
+<!-- 팀 상세페이지  -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 차트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/sytle.css' %}">
+
+
+    <!-- main 페이지 css -->
+    <link rel="stylesheet" href="{% static 'assets/css/section/team.css' %}">
+
+    <title>기로프-팀</title>
+</head>
+
+<body>
+    <div class="team_wrap container">
+        <div class="header">
+            <a href="{% url 'teams:team_list' %}"><img class="ximg" src="{% static 'assets/img/back.svg' %}"
+                    alt="down_pop"></a>
+            <h2>{{ team.name }}</h2>
+            <!-- 로그인 했을 때 -->
+            {% if user.is_authenticated %}
+            <form action="{% url 'teams:likes' team.id %}" method='POST'>
+                {% csrf_token %}
+                {% if user in team.like_users.all %}
+                <button class="pin"><img class="pinimg" src="{% static 'assets/img/pin_bold.svg' %}" alt="pin"></button>
+                {% else %}
+                <button class="pin"><img class="pinimg" src="{% static 'assets/img/pin.svg' %}" alt="pin"></button>
+                {% endif %}
+            </form>
+            <!-- 로그인 안 했을 때 -->
+            {%else %}
+            <button class="pin">
+                <img class="pinimg" src="{% static 'assets/img/pin_bold.svg' %}" alt="pin" style="opacity: 0;">
+            </button>
+            <!-- 팀 고정은 로그인 후 사용해주세요. -->
+            {% endif %}
+
+        </div>
+        <div class="team_member">
+            <div class="team_header">
+                <h3>팀원</h3>
+                {% if request.user in team.members.all %}
+                <a href="{% url 'teams:team_update' team.id %}" class="modify"><img
+                        src="{% static 'assets/img/arrow_right.svg' %}" alt="modify"></a>
+                {% else %}
+                {% endif %}
+            </div>
+            <div class="team_list">
+                <!-- 팀원 목록 -->
+                {% for member in team.members.all %}
+                <div class="profile">
+                    <div>
+                        <img src="{{ member.profile.url }}" alt="profile"
+                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <p>{{ member.username }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="todo">
+            <div class="todo_header">
+                <h3>할 일</h3>
+                {% if request.user in team.members.all %}
+                <a href="{% url 'teams:task_create' team.id %}"><img class="arrow_right"
+                        src="{% static 'assets/img/arrow_right.svg' %}" alt="down_pop"></a>
+                <!-- <button class="modify" onclick="modifyTodo()"><img src="{% static 'assets/img/modify.svg' %}" alt="modify"></button> -->
+                {% endif %}
+            </div>
+            <div class="todo_list" style="text-align: center;">
+                {% for task in tasks %}
+                <div>
+                    <p>{{ task.title }}</p>
+                    {% if request.user in team.members.all %}
+                    <div class="box">
+                        <a href="{% url 'teams:task_update' task.id %}"><button type="button"><img class="modify"
+                                    src="{% static 'assets/img/modify.svg' %}" alt="modify"></button></a>
+                        <a href="{% url 'teams:task_delete' task.id %}"><button type="button"><img class="delete"
+                                    src="{% static 'assets/img/x_bold.svg' %}" alt="x_bold"></button></a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% empty %}
+                <div class="todo_no">
+                    <div class="nothing">
+                        <img src="{% static 'assets/img/no_todo.png' %}" alt="bin">
+                        <p>아직 작성된 할 일이 없어요</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="graph">
+            <canvas id="doughnut-chart-{{ team.id }}" width="100" height="100"></canvas>
+            <p><em class="percent_p"></em>%</p>
+        </div>
+    </div>
+
+    <!-- team_data JSON 데이터 전달 -->
+    <script id="teamdata" type="application/json">{{ teamdata|safe }}</script>
+    <script id="team" type="application/json">{{ team.id }}</script>
+    <script id="team_member_count" type="application/json">{{ team_member_count }}</script>
+    <script id="team_task_count" type="application/json">{{ team_task_count }}</script>
+    <script id="team_completed_tasks" type="application/json">{{ team_completed_tasks }}</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+
+    <script src="{% static 'js/team.js' %}"></script>
+    <script src=" {% static 'js/detail_chart.js' %}?after"></script>
+    <script>
+        const Percent = document.querySelector('.percent_p');
+
+        if({{ team_completed_tasks }}* 100 / {{ team_task_count }}){
+            Percent.innerHTML = {{ team_completed_tasks }}* 100 / {{ team_task_count }}
+        } else {
+            Percent.innerHTML = 0
+        }
+    </script>
+</body>
+
+</html>

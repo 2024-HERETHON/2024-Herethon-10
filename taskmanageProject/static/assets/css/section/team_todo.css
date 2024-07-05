@@ -1,0 +1,111 @@
+.team_todowrap {
+    position: relative;
+}
+
+.header .top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.header .top h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.header .top .backbtn {
+    left: 0;
+    position: absolute;
+}
+
+/* main */
+
+form {
+    padding: 0 8px;
+}
+
+.title_box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.title_box>label {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.title_box>input {
+    box-shadow: 0px 0px 10px 0px #00000020;
+    border: 0;
+    padding: 15px;
+    height: 54px;
+    border-radius: 20px;
+}
+
+.pick_human {
+    margin-bottom: 20px;
+}
+
+.pick_human>label {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #555;
+}
+
+.pick_human>label.human{
+    margin-bottom: 20px;
+    color: var(--black);
+}
+
+.pick_human>input {
+    margin-right: 10px;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+#id_manager {
+    margin-top: 10px;
+}
+
+#id_manager>div>label {
+    font-size: 20px;
+}
+
+#id_manager>div>label>input {
+    margin-right: 10px;
+}
+
+.check_ok {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.check_ok>label {
+    font-size: 20px;
+}
+
+.check_ok>input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+form>button {
+    position: absolute;
+    width: 100%;
+    max-width: 354px;
+    height: 55px;
+    background-color: var(--main);
+    color: var(--white);
+    border-radius: 20px;
+    bottom: 40px;
+}

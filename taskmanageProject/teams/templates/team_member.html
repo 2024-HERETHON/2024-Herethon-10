@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 기본 css  -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}?after">
+    <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}?after">
+    <link rel="stylesheet" href="{% static 'assets/css/sytle.css' %}?after">
+
+
+    <!-- main 페이지 css -->
+    <link rel="stylesheet" href=" {% static 'assets/css/section/team_member.css' %}?after">
+
+    <title>기로프-팀원 수정</title>
+</head>
+
+<body>
+    <div class="team_memberwrap container">
+        <div class="header">
+            <div class="top">
+                <button class="backbtn">
+                    <a href="{% url 'teams:team_detail' team.id %}">
+                        <img src="{% static 'assets/img/back.svg' %}" alt="backbtn">
+                    </a>
+                </button>
+                <h1>팀원</h1>
+            </div>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="add_team">
+                <div class="friend_list">
+                    {% for member in team.members.all %}
+                    <div class="plus_friend">
+                        <div>
+                            <p>{{ member.username }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="list_wrap" style="height: 250px">
+                    <div class="list">
+                        {{ form.members }}
+                    </div>
+                </div>
+            </div>
+            <button type="submit">수정</button>
+        </form>
+    </div>
+</body>
+
+</html>
