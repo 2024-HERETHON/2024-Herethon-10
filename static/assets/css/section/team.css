@@ -11,17 +11,20 @@
 }
 
 .header .pinimg {
+    width: 28px;
     margin-left: 10px;
 }
 
 .header .ximg {
-    width: 20px;
+    margin-left: 5px;
+    width: 28px;
 }
 
 .header h2 {
     margin-right: 10px;
     font-size: 24px;
     font-weight: 600;
+    color: var(--main);
 }
 
 .header a {
