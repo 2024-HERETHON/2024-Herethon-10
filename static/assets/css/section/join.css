@@ -71,6 +71,7 @@ form > .userPass, form > .userPassre {
 
 .box img, .box button {
     margin-left: 7px;
+    margin-right: 3px
 }
 
 .box img:first-child, .box button:first-child {
