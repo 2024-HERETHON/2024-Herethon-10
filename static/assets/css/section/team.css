@@ -19,6 +19,7 @@
 }
 
 .header h2 {
+    margin-right: 10px;
     font-size: 24px;
     font-weight: 600;
 }
@@ -158,7 +159,7 @@
 .todo_list>div .box .modify {
     width: 19px;
     height: 19px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .todo_list>div .box .delete {

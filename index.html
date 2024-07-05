@@ -21,7 +21,6 @@
     <div class="main_wrap container">
         <header id="header">
             <h1><a href="/">기로프</a></h1>
-            <a href="/template/login.html">로그인</a>
             <div>
                 <a href="./template/team/team_made.html" class="create">
                     <img src="./static/assets/img/plus.svg" alt="">
@@ -105,10 +104,10 @@
     <!-- gsap -->
     <script src="./static/js/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const pinImages = document.querySelectorAll('.pin_img');
 
-            pinImages.forEach(function(img) {
+            pinImages.forEach(function (img) {
                 if (!img.classList.contains('none')) {
                     img.closest('.box').classList.add('bordered');
                 }
