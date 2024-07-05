@@ -49,9 +49,18 @@ function checkInput() {
 function showPass() {
     const currentType = userPass.getAttribute('type');
     userPass.setAttribute('type', currentType === 'password' ? 'text' : 'password');
+
+    const togglePassImg = document.getElementById('togglePassImg');
+    console.log(togglePassImg)
+    togglePassImg.setAttribute('src', currentType === 'password' ? '../../static/assets/img/password_show.svg' : '../../static/assets/img/password.svg');
+    togglePassImg.classList.add('show_passwordImg')
 }
 
 function showPassRe() {
     const currentType = userPassRe.getAttribute('type');
     userPassRe.setAttribute('type', currentType === 'password' ? 'text' : 'password');
+
+    const togglePassReImg = document.getElementById('togglePassReImg');
+    togglePassReImg.setAttribute('src', currentType === 'password' ? '../../static/assets/img/password_show.svg' : '../../static/assets/img/password.svg');
+    togglePassReImg.classList.add('show_passwordImg')
 }
